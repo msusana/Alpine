@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import {BrowserRouter as Router,Route,} from "react-router-dom";
 import { Link } from 'react-router-dom';
+import { Tabs, Tab } from 'react-materialize';
 import Exterieur from "./Exterieur";
 import Garage from "./Garage";
 import Interieur from "./Interieur";
@@ -9,17 +10,54 @@ import Multimedia from "./Multimedia";
 import Transport from "./Transport";
 
 const Accessories = ({}) => {
-        <Router>
-          <Route path="/Exterieur" exact component={Exterieur}/>
-          <Route path="/Garage" exact component={Garage}/>
-          <Route path="/Interieur" exact component={Interieur}/>
-          <Route path="/Multimedia" exact component={Multimedia}/>
-          <Route path="/Transport" exact component={Transport}/>
-        </Router>
+     
 return(
     <div >
-    Accessories
-    <Link to ='/Garage'>garage</Link>
+     <Tabs className="tab-demo z-depth-1"
+        options={{
+        swipeable: true
+        }}
+    scope="tabs-31">
+
+        <Tab active  title="Extérieur"
+            options={{
+            duration: 300, onShow: null, responsiveThreshold: Infinity, swipeable: false
+            }} >
+            <Exterieur />
+        </Tab> 
+
+        <Tab
+            options={{ 
+                duration: 300, onShow: null, responsiveThreshold: Infinity, swipeable: false
+            }}
+            title="Intérieur">
+            <Interieur />
+        </Tab> 
+  
+        <Tab 
+            options={{
+            duration: 300, onShow: null, responsiveThreshold: Infinity, swipeable: false
+            }}
+            title="Transport et Protection">
+            <Transport />
+        </Tab>
+
+        <Tab 
+            options={{
+            duration: 300, onShow: null, responsiveThreshold: Infinity, swipeable: false
+            }}
+            title="Multimédia">
+            <Multimedia />
+        </Tab>
+
+        <Tab 
+            options={{
+            duration: 300, onShow: null, responsiveThreshold: Infinity, swipeable: false
+            }}
+            title="Matériel de Garage">
+            <Garage />
+        </Tab>
+    </Tabs>
     </div>
 )}
 const mapStateToProps = state =>{

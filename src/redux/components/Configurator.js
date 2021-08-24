@@ -19,7 +19,7 @@ return(
               <div><Link to= "/Jantes"> Jantes</Link></div>
               <div><Link to= "/Sellerie"> Sellerie</Link></div>
               <div><Link to= "/Equipements"> Equipements</Link></div>
-              <div><Link to= "/Accessoires"> Accessoires</Link></div>
+              <div><Link to= "/Accessories"> Accessoires</Link></div>
               <div><Link to= "/Récapitulatif"> Récapitulatif</Link></div>
           </Col>
           
