@@ -1,6 +1,10 @@
 export const initialState = {
-  version: '',
-    
+  version: null,
+  photoPure : '/AlpineCars_app-images/sources-homepage/versions/ALPINE-PURE-1.png',
+  photoLegende : '/AlpineCars_app-images/sources-homepage/versions/ALPINE-LEGENDE-1.png',
+  jsonVersion : {},
+  jsonOption : {},
+  isFetching : false
   };
    
   export const dataStore = (state = initialState, action) => {
@@ -12,14 +16,18 @@ export const initialState = {
                 version : action.data
               }
           }
-          case "":{
+          case "GET_RES_JSON":{
             return{
-              
+              ...state,
+              jsonVersion : action.version,
+              jsonOption : action.option,
+              isFetching: false
             }
           }
-          case "":{
+          case "FETCHING_DATA":{
             return{
-            
+              ...state,
+              isFetching:true,
             }
         }
     

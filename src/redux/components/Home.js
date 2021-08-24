@@ -1,13 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
+import Versions from "./Versions";
  
 
-const Sealing = ({}) => {
+const Home = ({}) => {
 
 return(
-    <div >
-    
-    </div>
+    <Versions/>
 )}
 const mapStateToProps = state =>{
     return{
@@ -19,4 +18,4 @@ const mapDispatchToProps = dispatch => {
         
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Sealing)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

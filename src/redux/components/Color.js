@@ -6,7 +6,7 @@ const Color = ({}) => {
 
 return(
     <div >
-    
+    colorrrrrr
     </div>
 )}
 const mapStateToProps = state =>{

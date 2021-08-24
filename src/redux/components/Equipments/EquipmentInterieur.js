@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
  
 
-const Sealing = ({}) => {
+const EquipmentInterieur = ({}) => {
 
 return(
     <div >
@@ -19,4 +19,4 @@ const mapDispatchToProps = dispatch => {
         
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Sealing)
+export default connect(mapStateToProps, mapDispatchToProps)(EquipmentInterieur)

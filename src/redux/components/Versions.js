@@ -1,35 +1,52 @@
 import React from "react";
 import { connect } from "react-redux";
- import { Row, Col } from 'react-materialize';
- import { getVersion } from "../actions";
+import { Row, Col } from 'react-materialize';
+import { getVersion, getResJson } from "../actions";
+import Configurator from "./Configurator";
+import { Link } from 'react-router-dom';
 
-const Versions = ({version, getVersion}) => {
+ 
+const Versions = ({state, getVersion, getResJson}) => {
+console.log(state)
 
-    let dataJson = {}
     const onChange = (version) => {
       getVersion(version)
+      getResJson(version)
+    
     }
 
 return(
     <div>
-      <Row>
-        <Col s={12} m={6}>
-          <img src='/AlpineCars_app-images/sources-homepage/versions/ALPINE-PURE-1.png' onClick={()=>onChange('Pure')}></img>
-        </Col>
-        <Col s={12} m={6}>
-          <img src='/AlpineCars_app-images/sources-homepage/versions/ALPINE-LEGENDE-1.png' onClick={()=>onChange('Legende')}></img>
-        </Col>
-      </Row>
+      { state.version === null &&
+        <Row className='choiseVersion'>
+          <Link to= "/Configurator" onClick={()=>onChange('Pure')}>
+          <Col s={12} m={6}>
+            <img src={state.photoPure}></img>
+          </Col>
+          </Link>
+          <Link to= "/Configurator" onClick={()=>onChange('Legende')}>
+          <Col s={12} m={6}>
+            <img src={state.photoLegende}></img>
+          </Col>
+          </Link>
+        </Row>
+      }
+
+      {/* { state.version !== null
+      && <Configurator />
+      } */}
+    
     </div>
 )}
 const mapStateToProps = state =>{
     return{
-        version: state.version,
+        state : state
     }
 }
 const mapDispatchToProps = dispatch => {
     return{
       getVersion:(choseVersion)=> dispatch(getVersion(choseVersion)),
+      getResJson:(version)=> dispatch(getResJson(version)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Versions)
