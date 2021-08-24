@@ -19,22 +19,18 @@ return(
     <div>
       { state.version === null &&
         <Row className='choiseVersion'>
-          <Link to= "/Configurator" onClick={()=>onChange('Pure')}>
+          <Link to= "/Configurateur" onClick={()=>onChange('Pure')}>
           <Col s={12} m={6}>
             <img src={state.photoPure}></img>
           </Col>
           </Link>
-          <Link to= "/Configurator" onClick={()=>onChange('Legende')}>
+          <Link to= "/Configurateur" onClick={()=>onChange('Legende')}>
           <Col s={12} m={6}>
             <img src={state.photoLegende}></img>
           </Col>
           </Link>
         </Row>
       }
-
-      {/* { state.version !== null
-      && <Configurator />
-      } */}
     
     </div>
 )}

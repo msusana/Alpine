@@ -1,58 +1,38 @@
 import React, {useEffect} from "react";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
-import { Tabs, Tab } from 'react-materialize';
+import { Row, Col } from 'react-materialize';
+import Rims from "./Rims";
 
 const Configurator = ({state}) => {
  
 return(
     <div>
   {state.version}
-  <Tabs
-  className="tab-demo z-depth-1"
-  options={{
-    swipeable: true
-  }}
-  scope="tabs-31"
->
-  <Tab 
-  active
-    className="blue"
-    options={{
-      duration: 300,
-      onShow: null,
-      responsiveThreshold: Infinity,
-      swipeable: false
-    }}
-    title="Test 1"
-  >
-    Test 1
-  </Tab> 
-  <Tab
-    className="red"
-    options={{
-      duration: 300,
-      onShow: null,
-      responsiveThreshold: Infinity,
-      swipeable: false
-    }}
-    title="Test 2"
-  >
-    Test 2
-  </Tab>
-  <Tab
-    className="green"
-    options={{
-      duration: 300,
-      onShow: null,
-      responsiveThreshold: Infinity,
-      swipeable: false
-    }}
-    title="Test 3"
-  >
-    Test 3
-  </Tab>
-</Tabs>
+    <Row className='configurator'>
+          <Col s={12} m={6}>
+            <img src={state.photoPure}></img>
+          </Col>
+          
+          <Col s={12} m={6}>
+              <div><Link to= "/Couleur"> Couleur</Link></div>
+              <div><Link to= "/Jantes"> Jantes</Link></div>
+              <div><Link to= "/Sellerie"> Sellerie</Link></div>
+              <div><Link to= "/Equipements"> Equipements</Link></div>
+              <div><Link to= "/Accessoires"> Accessoires</Link></div>
+              <div><Link to= "/Récapitulatif"> Récapitulatif</Link></div>
+          </Col>
+          
+        </Row>
+{/* { state.version !== null && 
+      
+   
+    { state.version === "Pure" && 
+     
+       
+  }
+       
+} */}
     </div>
 )}
 const mapStateToProps = state =>{

@@ -6,7 +6,7 @@ const Summary = ({}) => {
 
 return(
     <div >
-    
+    Summary
     </div>
 )}
 const mapStateToProps = state =>{

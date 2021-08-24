@@ -21,13 +21,13 @@ const App = () => (
       <h1 className='title'>ALPINE</h1>
         <Router> 
           <Route path='/' exact component={Home}/>
-          <Route path='/Color' exact component={Color}/>
-          <Route path='/Rims' exact component={Rims}/>
-          <Route path='/Sealing' exact component={Sealing}/>
-          <Route path='/Equipments' exact component={Equipments}/>
+          <Route path='/Couleur' exact component={Color}/>
+          <Route path='/Jantes' exact component={Rims}/>
+          <Route path='/Sellerie' exact component={Sealing}/>
+          <Route path='/Equipements' exact component={Equipments}/>
           <Route path='/Accessories' exact component={Accessories}/>
-          <Route path='/Summary' exact component={Summary}/>
-          <Route path='/Configurator' exact component={Configurator}/>
+          <Route path='/Récapitulatif' exact component={Summary}/>
+          <Route path='/Configurateur' exact component={Configurator}/>
         </Router>  
     </main> 
      

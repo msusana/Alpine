@@ -6,7 +6,7 @@ const Sealing = ({}) => {
 
 return(
     <div >
-    
+    Sealing
     </div>
 )}
 const mapStateToProps = state =>{

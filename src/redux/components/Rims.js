@@ -6,7 +6,7 @@ const Rims = ({}) => {
 
 return(
     <div >
-    
+    rims
     </div>
 )}
 const mapStateToProps = state =>{
