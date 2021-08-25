@@ -22,6 +22,35 @@ export const getDataJson = (version, option) => {
     
 }
 
+export const getExhaust = (data) => {
+    console.log("exhauts")
+    return{
+       type : 'GET_EXHAUST',
+       data
+    }
+    
+}
+export const deleteExhaust = () => {
+    return{
+       type : 'DELETE_EXHAUST',
+    }
+    
+}
+export const getParkAssist = (data) => {
+    return{
+       type : 'GET_PARKASSIST',
+       data
+    }
+    
+}
+export const deleteParkAssist = () => {
+    return{
+       type : 'DELETE_PARKASSIST',
+    }
+    
+}
+
+
 export const getVersion = (data) => {
     return (dispatch) => {
             dispatch(getDataVersion(data))
@@ -30,7 +59,7 @@ export const getVersion = (data) => {
 }
 
 export const getResJson = (version) => {
-    
+    console.log(version)
     return (dispatch) => {
         dispatch(getData())
     fetch('../../alpine.json')
@@ -38,9 +67,9 @@ export const getResJson = (version) => {
         return res.json()})
     .then(data => { 
         if (version === 'Pure'){
-            dispatch(getDataJson(data.version.pure, data.option))
+            dispatch(getDataJson(data.version.pure, data.version.option))
         }else if(version === 'Legende'){
-           dispatch(getDataJson(data.version.legende, data.option))
+           dispatch(getDataJson(data.version.legende, data.version.option))
         }
     })
     .catch(error => console.log(error))
