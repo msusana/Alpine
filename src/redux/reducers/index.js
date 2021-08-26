@@ -14,11 +14,15 @@ export const initialState = {
     mainPic : null,
     view : [],
     rims : {},
-    sealing : null
+    sealing : null,
+    equipments:{
+      
+    }
 
   },
   parkassist:null,
   exhaust: null,
+  confort: [],
   };
    
   export const dataStore = (state = initialState, action) => {
@@ -102,7 +106,19 @@ export const initialState = {
             ...state,
             exhaust: null,
           }
-      }
+        }
+        case "GET_CONFORT":{
+          return{
+            ...state,
+            confort: state.confort.concat(action.data)
+           
+          }
+        }case "DELETE_CONFORT":{
+          return{
+            ...state,
+            confort: state.confort.filter(confort => confort.name != action.data.name)
+          }
+        }
         
         
           default:

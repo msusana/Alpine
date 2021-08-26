@@ -23,7 +23,6 @@ export const getDataJson = (version, option) => {
 }
 
 export const getExhaust = (data) => {
-    console.log("exhauts")
     return{
        type : 'GET_EXHAUST',
        data
@@ -81,8 +80,24 @@ export const parseSealSelected = (data) => {
         data
     }
 }
+export const getConfort = (data) => {
+    return{
+       type : 'GET_CONFORT',
+       data
+    }
+    
+}
+export const deleteConfort  = (data) => {
+    return{
+       type : 'DELETE_CONFORT',
+       data
+    }
+    
+}
+
+
+
 export const getResJson = (version) => {
-    console.log(version)
     return (dispatch) => {
         dispatch(getData())
     fetch('../../alpine.json')

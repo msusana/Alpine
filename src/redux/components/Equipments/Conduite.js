@@ -5,8 +5,8 @@ import { getExhaust, getParkAssist, deleteExhaust, deleteParkAssist} from "../..
 
 const Conduite = ({state, driving, getExhaust, getParkAssist, deleteExhaust, deleteParkAssist}) => {
 
-const onChange = (selection, data) => {
-
+const onConduite = (selection, data) => {
+console.log(state)
     if(selection === 'Exhaust'){
         if(state.exhaust === null){
             getExhaust(data)
@@ -21,16 +21,18 @@ const onChange = (selection, data) => {
             getParkAssist(data)
         }else if(state.parkassist !== null){
             if(state.parkassist.name === selection){
+                console.log('delete parkassist')
             deleteParkAssist()
             }else{
                 getParkAssist(data)
             }
         }
     }
+
   }
 
 return(
-    <div className='driving'>
+    <div className='itemEquipment'>
         <Row>
         <Col m={8} s={12}>
         <Carousel
@@ -74,8 +76,8 @@ return(
         </Col>
         </Row>
         <Row>
-        <Col m={3} s={12} onClick={() => onChange("Exhaust", driving.exhaust)}>
-                <Card className='itemDriving'
+        <Col m={3} s={12} onClick={() => onConduite("Exhaust", driving.exhaust)} className={state.exhaust ? 'selected' : ''}>
+                <Card className="itemDriving"
                 key={driving.exhaust}
                 header={<CardTitle image={driving.exhaust.picture}/>}
                 > 
@@ -84,8 +86,8 @@ return(
                 </Card> 
             </Col>
    {
-         driving.parkAssist.map(equipment => (
-            <Col m={3} s={12} onClick={() => onChange(equipment.name, equipment)}>
+         driving.parkAssist.map((equipment, index) => (
+            <Col m={3} s={12} onClick={() => onConduite(equipment.name, equipment)} className={state.parkassist ? driving.parkAssist[`${index}`].name === state.parkassist.name ? 'selected' : '' : ""} >
                 <Card className='itemDriving'
                 key={equipment}
                 header={<CardTitle image={equipment.picture}/>}
