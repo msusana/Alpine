@@ -4,15 +4,7 @@ import { getEquipmentInterieur, deleteEquipmentInterieur} from "../../actions";
 import { Carousel, Row, Col, Card, CardTitle, Collection, CollectionItem, Button } from 'react-materialize'; 
 
 const EquipmentInterieur = ({state, equipmentInterieur, getEquipmentInterieur, deleteEquipmentInterieur, selectedEquipmentInterieur}) => { 
-
-const addEquipmentInterieur = (data) =>{
-    getEquipmentInterieur(data)
-    deleteEquipmentInterieur(data)
-}
-const deltEquipmentInterieur = (data) =>{
-    deleteEquipmentInterieur(data)
-    getEquipmentInterieur(data)
-}
+console.log(state)
 
 
 
@@ -124,7 +116,7 @@ const mapStateToProps = state =>{
     return{
         state : state,
         equipmentInterieur : state.jsonOption.equipment.innCustom,
-        selectedEquipmentInterieur: state.equipmentINT
+        selectedEquipmentInterieur: state.currentSelection.equipment.innCustom
     }
 }
 const mapDispatchToProps = dispatch => {
