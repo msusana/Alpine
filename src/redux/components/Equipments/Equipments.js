@@ -20,7 +20,7 @@ return(
             options={{
             duration: 300, onShow: null, responsiveThreshold: Infinity, swipeable: false
             }} >
-            <Conduite />
+            {/* <Conduite /> */}
         </Tab> 
 
         <Tab
@@ -28,7 +28,7 @@ return(
                 duration: 300, onShow: null, responsiveThreshold: Infinity, swipeable: false
             }}
             title="Confort">
-            <Confort />
+            {/* <Confort /> */}
         </Tab> 
   
         <Tab 
@@ -36,7 +36,7 @@ return(
             duration: 300, onShow: null, responsiveThreshold: Infinity, swipeable: false
             }}
             title="Design">
-            <Design />
+            {/* <Design /> */}
         </Tab>
 
         <Tab 

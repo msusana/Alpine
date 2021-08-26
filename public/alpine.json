@@ -308,8 +308,8 @@
                }
              ]
              },
-             "innCustom":{
-                "equipements":[{
+             "innCustom":[
+                {
                    "name":"Pédalier en aluminium",
                    "price":120,
                    "picture":"/AlpineCars_app-images/configurateur/equipements/categories/personnalisation interieure/pedal-alu.jpg"
@@ -330,8 +330,7 @@
                    "picture":"/AlpineCars_app-images/configurateur/equipements/categories/personnalisation interieure/siege-chauffant.jpg"
                 }
                ]
-             }
-          },
+             },
           "accessories":{
              "transportAndProtection":[{
                    "name":"Extincteur 1kg avec manomètre",

@@ -94,6 +94,36 @@ export const deleteConfort  = (data) => {
     }
     
 }
+export const getDesign = (data) => {
+    return{
+       type : 'GET_DESIGN',
+       data
+    }
+    
+}
+export const deleteDesign  = (data) => {
+    return{
+       type : 'DELETE_DESIGN',
+       data
+    }
+    
+}
+export const getEquipmentInterieur = (data) => {
+    return{
+       type : 'GET_EQUIPMENT_INT',
+       data
+    }
+    
+}
+export const deleteEquipmentInterieur  = (data) => {
+    return{
+       type : 'DELETE_EQUIPMENT_EXT',
+       data
+    }
+    
+}
+
+
 
 
 

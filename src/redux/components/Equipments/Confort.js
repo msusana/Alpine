@@ -4,10 +4,8 @@ import { Carousel, Row, Col, Card, CardTitle, Collection, CollectionItem } from 
 import { getConfort, deleteConfort} from "../../actions";
 
 const Confort = ({state, confort, getConfort, deleteConfort}) => {
-
+console.log(confort)
 const onConfort = (selection, data) => {
-console.log('state',state)
-console.log(selection)
 
         if(state.confort.length === 0){
             getConfort(data)

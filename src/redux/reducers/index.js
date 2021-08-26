@@ -15,14 +15,29 @@ export const initialState = {
     view : [],
     rims : {},
     sealing : null,
-    equipments:{
-      
-    }
-
+   
+  }, 
+  equipment:{
+     design : [{
+        id:0,
+        characteristic : null,
+        selected : false,
+      },
+      {
+        id:1,
+        characteristic : null,
+        selected : false,
+      }
+    
+    
+    ]
   },
+ 
+  design:[],
   parkassist:null,
   exhaust: null,
   confort: [],
+  equipmentINT : []
   };
    
   export const dataStore = (state = initialState, action) => {
@@ -119,7 +134,45 @@ export const initialState = {
             confort: state.confort.filter(confort => confort.name != action.data.name)
           }
         }
-        
+        case "GET_DESIGN":{
+          return{
+            ...state,
+            design: state.confort.concat(action.data)
+           
+          }
+        }case "DELETE_DESIGN":{
+          return{
+            ...state,
+            design: state.confort.filter(confort => confort.name != action.data.name)
+          }
+        }
+        case "GET_EQUIPMENT_INT":{
+          let newState = {
+             ...state,
+            equipmentINT: state.equipmentINT.concat(action.data),
+            jsonOption:  {
+              ...state.jsonOption,
+              equipment:{
+                ...state.equipment,
+                innCustom: state.jsonOption.equipment.innCustom.filter(dataInnCustom => dataInnCustom.name != action.data.name)
+              },
+            }}
+          console.log(newState);
+          return newState
+        }case "DELETE_EQUIPMENT_EXT":{
+          let newState = {
+            ...state,
+           equipmentINT: state.equipmentINT.filter(dataInnCustom => dataInnCustom.name != action.data.name),
+           jsonOption:  {
+             ...state.jsonOption,
+             equipment:{
+               ...state.equipment,
+               innCustom: state.jsonOption.equipment.innCustom.concat(action.data),
+             },
+           }}
+         console.log(newState);
+         return newState
+        }
         
           default:
             return state
