@@ -58,6 +58,29 @@ export const getVersion = (data) => {
     }
 }
 
+export const parseColorSelected = (data) => {
+
+    return {
+        type : "CHOOSEN_COLOR",
+        data
+    }
+}
+
+export const parseRimsSelected = (data) => {
+    
+    return {
+        type : "CHOOSEN_RIMS",
+        data
+    }
+}
+
+export const parseSealSelected = (data) => {
+    
+    return {
+        type : "CHOOSEN_SEAL",
+        data
+    }
+}
 export const getResJson = (version) => {
     console.log(version)
     return (dispatch) => {

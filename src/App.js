@@ -19,11 +19,11 @@ const App = () => (
    
       <main> 
       <Navbar 
-  alignLinks="right"
-  brand={<a className="brand-logo center-align" id ='logo' href="/"><img src='/AlpineCars_app-images/sources-homepage/logo/logo-white.png'></img></a>}
-  id="mobile-nav"
-  menuIcon={<Icon>menu</Icon>}
-  options={{
+    alignLinks="right"
+    brand={<a className="brand-logo center-align" id ='logo' href="/"><img src='/AlpineCars_app-images/sources-homepage/logo/logo-white.png'></img></a>}
+    id="mobile-nav"
+    menuIcon={<Icon>menu</Icon>}
+    options={{
     draggable: true,
     edge: 'left',
     inDuration: 250,

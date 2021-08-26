@@ -1,83 +1,86 @@
 {
-    "version":{
-       "pure":{
-          "price":54700,
-            "characteristic":[
-               {
-               "color":"white",
-               "price":0,
-                "rims":[{
-                   "model":"standard",
-                      "price":0,
-                      "pictures":[
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_blanche-jante_standard (1).jpg",
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_blanche-jante_standard (2).jpg",
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_blanche-jante_standard (3).jpg",
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_blanche-jante_standard (4).jpg"
-                      ]
-                   },
-                   {
-                   "model": "serac",
-                      "price":1000,
-                      "pictures":[
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_blanche-jante_serac (1).jpg",
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_blanche-jante_serac (2).jpg",
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_blanche-jante_serac (3).jpg",
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_blanche-jante_serac (4).jpg"
-                      ]
-                   }
-                  ]
-                },
-             {
-               "color":"black",
-               "price":840,
-                "rims":[{
-                   "model":"standard",
-                      "price":0,
-                      "pictures":[
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_noire-jante_standard (1).jpg",
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_noire-jante_standard (2).jpg",
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_noire-jante_standard (3).jpg",
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_noire-jante_standard (4).jpg"
-                      ]
-                   },
-                   {
-                   "model": "serac",
-                      "price":1000,
-                      "pictures":[
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_noire-jante_serac (1).jpg",
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_noire-jante_serac (2).jpg",
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_noire-jante_serac (3).jpg",
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_noire-jante_serac (4).jpg"
-                      ]
-                   }
-                  ]
-             },
-             {
-             "color":"blue",
-                "price":1800,
-                "rims":[{
-                   "model":"standard",
-                      "price":0,
-                      "pictures":[
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_bleu-jante_standard (1).jpg",
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_bleu-jante_standard (2).jpg",
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_bleu-jante_standard (3).jpg",
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_bleu-jante_standard (4).jpg"
-                      ]
-                   },
-                   {
-                   "model":"serac",
-                      "price":1000,
-                      "pictures":[
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_bleu-jante_serac (1).jpg",
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_bleu-jante_serac (2).jpg",
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_bleu-jante_serac (3).jpg",
-                         "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_bleu-jante_serac (4).jpg"
-                      ]
-                   }]
-                }
-         ],    
+   "version":{
+      "pure":{
+         "price":54700,
+           "characteristic":[
+              {
+              "name" :"Peinture opaque Blanc Glacier",
+              "color":"white",
+              "price":0,
+               "rims":[{
+                  "model":"standard",
+                     "price":0,
+                     "pictures":[
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_blanche-jante_standard (1).jpg",
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_blanche-jante_standard (2).jpg",
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_blanche-jante_standard (3).jpg",
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_blanche-jante_standard (4).jpg"
+                     ]
+                  },
+                  {
+                  "model": "serac",
+                     "price":1000,
+                     "pictures":[
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_blanche-jante_serac (1).jpg",
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_blanche-jante_serac (2).jpg",
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_blanche-jante_serac (3).jpg",
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_blanche-jante_serac (4).jpg"
+                     ]
+                  }
+                 ]
+               },
+            {
+              "name" :"Teinte métallisée Noir Profond",
+              "color":"black",
+              "price":840,
+               "rims":[{
+                  "model":"standard",
+                     "price":0,
+                     "pictures":[
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_noire-jante_standard (1).jpg",
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_noire-jante_standard (2).jpg",
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_noire-jante_standard (3).jpg",
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_noire-jante_standard (4).jpg"
+                     ]
+                  },
+                  {
+                  "model": "serac",
+                     "price":1000,
+                     "pictures":[
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_noire-jante_serac (1).jpg",
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_noire-jante_serac (2).jpg",
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_noire-jante_serac (3).jpg",
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_noire-jante_serac (4).jpg"
+                     ]
+                  }
+                 ]
+            },
+            {
+            "name" :"Teinte spéciale Bleu Alpine",
+            "color":"blue",
+               "price":1800,
+               "rims":[{
+                  "model":"standard",
+                     "price":0,
+                     "pictures":[
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_bleu-jante_standard (1).jpg",
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_bleu-jante_standard (2).jpg",
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_bleu-jante_standard (3).jpg",
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_bleu-jante_standard (4).jpg"
+                     ]
+                  },
+                  {
+                  "model":"serac",
+                     "price":1000,
+                     "pictures":[
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_bleu-jante_serac (1).jpg",
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_bleu-jante_serac (2).jpg",
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_bleu-jante_serac (3).jpg",
+                        "/AlpineCars_app-images/configurateur/modele/pure/modele_pure-couleur_bleu-jante_serac (4).jpg"
+                     ]
+                  }]
+               }
+        ],    
           "sealing":{
             "characteristic":[
                {

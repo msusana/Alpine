@@ -5,6 +5,18 @@ export const initialState = {
   jsonVersion : {},
   jsonOption : {},
   isFetching : false,
+  rimsJson : [],
+  sealingJson : [],
+  currentSelection : {
+    name : null,
+    color : null,
+    price : null,
+    mainPic : null,
+    view : [],
+    rims : {},
+    sealing : null
+
+  },
   parkassist:null,
   exhaust: null,
   };
@@ -24,6 +36,7 @@ export const initialState = {
               ...state,
               jsonVersion : action.version,
               jsonOption : action.option,
+              sealingJson : action.version.sealing.characteristic,
               isFetching: false
             }
           }
@@ -32,7 +45,41 @@ export const initialState = {
               ...state,
               isFetching:true,
             }
-        }case "GET_PARKASSIST":{
+        }case "CHOOSEN_COLOR":{
+
+          return{
+            ...state,
+            currentSelection : {
+              ...state.currentSelection,
+              name : action.data.name,
+              color : action.data.color,
+              price : action.data.price,
+              mainPic : action.data.rims[0].pictures[0],
+              view : action.data.rims[0].pictures,
+            },
+            rimsJson : action.data.rims
+          }
+      }
+      case "CHOOSEN_RIMS":{
+        return{
+            ...state,
+            currentSelection : {
+            ...state.currentSelection,
+            rims : action.data,
+            view: action.data.pictures
+          }
+        }
+      } 
+      case "CHOOSEN_SEAL":{
+        return{
+          ...state,
+          currentSelection : {
+            ...state.currentSelection,
+            sealing : action.data
+          }
+        }
+    }
+        case "GET_PARKASSIST":{
           return{
             ...state,
             parkassist: action.data
