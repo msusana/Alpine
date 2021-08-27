@@ -10,7 +10,7 @@ const Color = ({state, parseColorSelected}) => {
     let mappedColor = state.jsonVersion.characteristic
 
     const getColor = (currentSelect) => {
-
+console.log(state)
             parseColorSelected(currentSelect)
     }
 
@@ -20,9 +20,10 @@ const Color = ({state, parseColorSelected}) => {
             <div key={color}>
                 <div className="container">
                     <Col className="custom-color-select" s={6} m={4} >
-                       <div className={state.currentSelection.color ? color.color === state.currentSelection.color ? 'selected' : 'no' : ""} >
+                       <div className={state.currentSelection.color ? color.color === state.currentSelection.color ? 'selected' : '' : ""} >
                         <img src={color.rims[0].pictures[0]} onClick={() => (getColor(color))} />
                         <p >{color.name}</p>
+                        <p><i class="material-icons">attach_money</i>{color.price}</p>
                        </div>   
                     </Col>
                 </div>
@@ -56,7 +57,7 @@ const Color = ({state, parseColorSelected}) => {
                 {displayColor()}
             </Row>
            {state.currentSelection.color !== null && 
-                <div className='container'>
+                <div className='color-carousel'>
                 <Carousel 
                     className="carrousel-select"
                     carouselId="Carousel-32"
@@ -71,7 +72,7 @@ const Color = ({state, parseColorSelected}) => {
                  </div>
            }   
             {state.currentSelection.color === null && 
-                <div className='container'>
+                <div className='color-carousel'>
                     <img src={state.jsonVersion.characteristic[0].rims[0].pictures[0]}></img>
                  </div>
            }  

@@ -145,6 +145,39 @@ margin: 3% auto;
 .color{
     height: 100vh;
 }
-.container img{
+.color-carousel{
+    width: 60%;
+    margin: 0 auto;
+}
+.color-carousel img{
     width: 100%;
+}
+/* RIMS */
+
+.rims{
+    height: 100vh;
+}
+.custom-rims-select img{
+    width: 80%;
+    cursor: pointer;
+    margin-bottom: 10px;
+    border: black 1px solid;
+    border-radius: 10px;
+    text-align: center;
+}
+.rims-carousel{
+    width: 50%;
+    margin: 0 auto;
+}
+.containerButton{
+    margin-top: 2%;
+    margin: 2%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+/*SEALING*/
+.sealing{
+    height: 100vh;
 }

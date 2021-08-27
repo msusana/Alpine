@@ -22,7 +22,10 @@ const Sealing = ({state, parseSealSelected}) => {
                     <Col className="" s={6} m={6} >
                        <div className="custom-color-select">
                         <img src={seal.picture} onClick={() => (getSeal(seal))}/>
-                        {seal.name}
+                       {seal.name}
+                       <br/>
+                       <i class="material-icons">attach_money</i>
+                        {seal.price}
                        </div>
                     </Col>
                 </div>
@@ -38,8 +41,11 @@ const Sealing = ({state, parseSealSelected}) => {
 
     return(
 
-       <div>
+       <div className='sealing'>
            <h3 className="car-name">{state.currentSelection.name}</h3>
+           <Row>
+                {displaySeal()}
+            </Row>
             {state.currentSelection.sealing !== null && 
                 <div className="container">
                     <Carousel 
@@ -68,9 +74,7 @@ const Sealing = ({state, parseSealSelected}) => {
                     <h1 className="select-car-please"> Please, select a car.</h1>
                 </div>
             }
-            <Row>
-                {displaySeal()}
-            </Row>
+            
             <Row>
                 <Col m={2}>
                     <Link to="/Jantes">
