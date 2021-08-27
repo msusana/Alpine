@@ -128,6 +128,7 @@ export const deleteEquipmentInterieur  = (data) => {
 
 
 export const getResJson = (version) => {
+
     return (dispatch) => {
         dispatch(getData())
     fetch('../../alpine.json')

@@ -40,8 +40,8 @@ const App = () => (
   <NavItem href="/#versions">
     Versions
   </NavItem>
-  <NavItem href="components.html">
-    Components
+  <NavItem href="/Récapitulatif">
+    Récapitulatif
   </NavItem>
 </Navbar>
         <Router> 

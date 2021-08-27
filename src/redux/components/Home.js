@@ -26,19 +26,12 @@ return(
   }}
     />  
     </div>
-      <Row className='presentation'>
-          <Col s={12}>
+      <div className='presentation'>
           <img src='/AlpineCars_app-images/sources-homepage/A110/Presentation_desktop-1.png'></img>
-          </Col>
-        </Row>
+        </div>
    
   
-    <div className='versions' id='versions'  style={{
-      backgroundImage:'url(/AlpineCars_app-images/sources-homepage/versions/COMPO-PURE.png)',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover'
-    }}>
+    <div className='versions' id='versions'>
         <Versions />
     </div>
     </>

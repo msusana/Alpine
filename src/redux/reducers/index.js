@@ -54,8 +54,7 @@ export const initialState = {
               isFetching:true,
             }
         }case "CHOOSEN_COLOR":{
-
-          return{
+          let newState = {
             ...state,
             currentSelection : {
               ...state.currentSelection,
@@ -67,6 +66,8 @@ export const initialState = {
             },
             rimsJson : action.data.rims
           }
+          console.log(newState, 'colorChoice');
+          return newState
       }
       case "CHOOSEN_RIMS":{
         return{
@@ -141,18 +142,18 @@ export const initialState = {
              currentSelection:{
                ...state.currentSelection,
                equipment:{
-                 ...state.equipment,
+                 ...state.currentSelection.equipment,
                  innCustom: state.currentSelection.equipment.innCustom.concat(action.data),
                }}, 
                jsonOption:{
                 ...state.jsonOption,
                 equipment:{
-                  ...state.equipment,
+                  ...state.jsonOption.equipment,
                   innCustom: state.jsonOption.equipment.innCustom.filter(dataInnCustom => dataInnCustom.name != action.data.name)
                 }
              
             }}
-          console.log(newState);
+          console.log("que pasa ? : ", newState);
           return newState
         }case "DELETE_EQUIPMENT_EXT":{
           let newState = {
@@ -160,13 +161,13 @@ export const initialState = {
             currentSelection:{
               ...state.currentSelection,
               equipment:{
-                ...state.equipment,
+                ...state.jsonOption.equipment,
                 innCustom: state.currentSelection.equipment.innCustom.filter(dataInnCustom => dataInnCustom.name != action.data.name),
               }}, 
               jsonOption:{
                 ...state.jsonOption,
                 equipment:{
-                  ...state.equipment,
+                  ...state.jsonOption.equipment,
                   innCustom: state.jsonOption.equipment.innCustom.concat(action.data),
                 }
             }

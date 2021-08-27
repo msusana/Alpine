@@ -9,7 +9,7 @@ import EquipmentInterieur from "./EquipmentInterieur";
 import Media from "./Media";
 import Security from "./Security";
 
-const Equipments = ({}) => {
+const Equipments = () => {
 
 return(
     <div>
@@ -21,6 +21,7 @@ return(
             duration: 300, onShow: null, responsiveThreshold: Infinity, swipeable: false
             }} >
             {/* <Conduite /> */}
+            <h1>TEST</h1>
         </Tab> 
 
         <Tab
@@ -29,6 +30,7 @@ return(
             }}
             title="Confort">
             {/* <Confort /> */}
+            <h1>TEST</h1>
         </Tab> 
   
         <Tab 
@@ -37,6 +39,7 @@ return(
             }}
             title="Design">
             {/* <Design /> */}
+            <h1>TEST</h1>
         </Tab>
 
         <Tab 
@@ -44,7 +47,8 @@ return(
             duration: 300, onShow: null, responsiveThreshold: Infinity, swipeable: false
             }}
             title="Extérieur">
-            <EquipmentExterieur />
+            {/* <EquipmentExterieur /> */}
+            <h1>TEST</h1>
         </Tab>
 
         <Tab 
@@ -60,7 +64,8 @@ return(
             duration: 300, onShow: null, responsiveThreshold: Infinity, swipeable: false
             }}
             title="Media">
-            <Media />
+            {/* <Media /> */}
+            <h1>TEST</h1>
         </Tab>
 
         <Tab 
@@ -68,7 +73,8 @@ return(
             duration: 300, onShow: null, responsiveThreshold: Infinity, swipeable: false
             }}
             title="Security">
-            <Security />
+            {/* <Security /> */}
+            <h1>TEST</h1>
         </Tab>
     </Tabs>
     </div>

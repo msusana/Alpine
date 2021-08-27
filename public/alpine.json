@@ -2,6 +2,11 @@
    "version":{
       "pure":{
          "price":54700,
+         "pictures":[
+            "/AlpineCars_app-images/sources-homepage/galerie/A110_PURE_4.jpg",
+            "/AlpineCars_app-images/sources-homepage/galerie/A110_PURE_6.jpg",
+            "/AlpineCars_app-images/sources-homepage/galerie/A110_PURE_8.jpg"
+         ],
            "characteristic":[
               {
               "name" :"Peinture opaque Blanc Glacier",
@@ -109,6 +114,11 @@
          ,
        "legende":{
           "price":58500,
+          "pictures":[
+            "/AlpineCars_app-images/sources-homepage/galerie/A110_LEGENDE_1.jpg",
+            "/AlpineCars_app-images/sources-homepage/galerie/A110_LEGENDE_5.jpg",
+            "/AlpineCars_app-images/sources-homepage/galerie/A110_LEGENDE_9.jpg"
+         ],
           "characteristic":[
              {
                "color":"white",

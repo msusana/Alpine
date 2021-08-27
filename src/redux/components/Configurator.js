@@ -1,39 +1,33 @@
 import React, {useEffect} from "react";
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom';
-import { Row, Col } from 'react-materialize';
-import Rims from "./Rims";
+import { Carousel } from 'react-materialize';
+import Menu from "./Menu";
 
 const Configurator = ({state}) => {
  
 return(
     <div>
-  {state.version}
-    <Row className='configurator'>
-          <Col s={12} m={6}>
-            <img src={state.photoPure}></img>
-          </Col>
-          
-          <Col s={12} m={6}>
-              <div><Link to= "/Couleur"> Couleur</Link></div>
-              <div><Link to= "/Jantes"> Jantes</Link></div>
-              <div><Link to= "/Sellerie"> Sellerie</Link></div>
-              <div><Link to="/Equipements"> Equipements</Link></div>
-              <div><Link to= "/Accessories"> Accessoires</Link></div>
-              <div><Link to= "/Récapitulatif"> Récapitulatif</Link></div>
-          </Col>
-          
-        </Row>
-{/* { state.version !== null && 
-      
-   
-    { state.version === "Pure" && 
-     
-       
-  }
-       
-} */}
-    </div>
+      <Carousel
+        carouselId="Carousel-35"
+        className='carouselHome'
+        images={[
+          "/AlpineCars_app-images/sources-homepage/galerie/A110_LEGENDE_1.jpg",
+          "/AlpineCars_app-images/sources-homepage/galerie/A110_LEGENDE_5.jpg",
+          "/AlpineCars_app-images/sources-homepage/galerie/A110_PE_1.jpg",
+          "/AlpineCars_app-images/sources-homepage/galerie/A110_PURE_4.jpg",
+          "/AlpineCars_app-images/sources-homepage/galerie/A110_PURE_6.jpg",
+          "/AlpineCars_app-images/sources-homepage/galerie/A110_PURE_8.jpg"
+          ]}
+          options={{
+            fullWidth: true,
+            indicators: true,
+            centerImages: true,
+          }}
+        /> 
+        <div className='menu'>
+        <Menu />
+        </div>
+    </div> 
 )}
 const mapStateToProps = state =>{
     return{

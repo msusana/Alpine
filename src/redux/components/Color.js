@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Row, Col, Carousel, Button, Icon } from 'react-materialize';
 import { Link } from 'react-router-dom';
 import { parseColorSelected } from "../actions";
+import Menu from "./Menu";
 
 const Color = ({state, parseColorSelected}) => {
 
@@ -34,41 +35,60 @@ const Color = ({state, parseColorSelected}) => {
             `${pictures}`
         )
     })
+    const mappedPicsJson = () => state.jsonVersion.pictures.map((pictures) => {
+        return (
+            `${pictures}`
+        )
+    })
 
     return(
        <div>
-           <h3 className="car-name">{state.currentSelection.name}</h3>
-           {state.currentSelection.color !== null &&
-            <div className="container">
-                <Carousel 
-                    className="carrousel-select"
-                    carouselId="Carousel-1"
-                    images={[
-                    mappedPics()
-                    ]}
-                    options={{
-                        dist: 0,
-                        duration: 200,
-                        fullWidth: true,
-                        indicators: true,
-                        noWrap: false,
-                        numVisible: 5,
-                        onCycleTo: null,
-                        padding: 0,
-                        shift: 0
-                    }}
-                    /> 
-            </div>
-           }
+    <div className='menu'>
+        <Menu />
+        </div> 
+        <h3 className="car-name">{state.currentSelection.name}</h3>
             {state.currentSelection.color === null &&
                 <div className="container">
                     <h1 className="select-car-please"> Please, select a car.</h1>
                 </div>
-            }
-
+            }  
             <Row>
                 {displayColor()}
             </Row>
+           {state.currentSelection.color !== null && 
+  
+                <Carousel 
+                    className="carrousel-select"
+                    carouselId="Carousel-32"
+                    images={[
+                    mappedPics()
+                    ]}
+                    options={{
+                        fullWidth: true,
+                        indicators: true,
+                    }}
+                    /> 
+         
+           }    {state.currentSelection.color === null && 
+         
+                <Carousel 
+                    className="carrousel-select"
+                    carouselId="Carousel-32"
+                    images={[
+                    mappedPicsJson()
+                    ]}
+                    options={{
+                      
+                        fullWidth: true,
+                        indicators: true,
+                      
+                    }}
+                    /> 
+            
+           }
+          
+
+          
                 {(state.version === "Pure") && (state.currentSelection.color !== null) &&
                     <Link to="/Jantes">
                         <div className="next-step">
