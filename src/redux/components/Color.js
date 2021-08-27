@@ -8,7 +8,7 @@ import Menu from "./Menu";
 const Color = ({state, parseColorSelected}) => {
 
     let mappedColor = state.jsonVersion.characteristic
-   
+
     const getColor = (currentSelect) => {
 
             parseColorSelected(currentSelect)
@@ -19,10 +19,10 @@ const Color = ({state, parseColorSelected}) => {
         return (
             <div key={color}>
                 <div className="container">
-                    <Col className="" s={6} m={4} >
-                       <div className="custom-color-select">
-                        <img src={color.rims[0].pictures[0]} onClick={() => (getColor(color))}/>
-                        {color.name}
+                    <Col className="custom-color-select" s={6} m={4} >
+                       <div className={state.currentSelection.color ? color.color === state.currentSelection.color ? 'selected' : 'no' : ""} >
+                        <img src={color.rims[0].pictures[0]} onClick={() => (getColor(color))} />
+                        <p >{color.name}</p>
                        </div>   
                     </Col>
                 </div>
@@ -42,7 +42,7 @@ const Color = ({state, parseColorSelected}) => {
     })
 
     return(
-       <div>
+       <div className='color'>
     <div className='menu'>
         <Menu />
         </div> 
@@ -56,7 +56,7 @@ const Color = ({state, parseColorSelected}) => {
                 {displayColor()}
             </Row>
            {state.currentSelection.color !== null && 
-  
+                <div className='container'>
                 <Carousel 
                     className="carrousel-select"
                     carouselId="Carousel-32"
@@ -68,32 +68,19 @@ const Color = ({state, parseColorSelected}) => {
                         indicators: true,
                     }}
                     /> 
-         
-           }    {state.currentSelection.color === null && 
-         
-                <Carousel 
-                    className="carrousel-select"
-                    carouselId="Carousel-32"
-                    images={[
-                    mappedPicsJson()
-                    ]}
-                    options={{
-                      
-                        fullWidth: true,
-                        indicators: true,
-                      
-                    }}
-                    /> 
-            
-           }
-          
-
+                 </div>
+           }   
+            {state.currentSelection.color === null && 
+                <div className='container'>
+                    <img src={state.jsonVersion.characteristic[0].rims[0].pictures[0]}></img>
+                 </div>
+           }  
           
                 {(state.version === "Pure") && (state.currentSelection.color !== null) &&
-                    <Link to="/Jantes">
+                    <Link to="/Jantes" >
                         <div className="next-step">
-                        <Button node="button" waves="light">
-                            Next step
+                        <Button node="button" waves="light" className='blue-grey darken-4' >
+                            Etape suivante
                             <Icon right>
                             arrow_forward
                             </Icon>
@@ -102,10 +89,10 @@ const Color = ({state, parseColorSelected}) => {
                     </Link>
                 }
             {(state.version === "Legende") && (state.currentSelection.color !== null) &&
-                <Link to="/Sellerie">
+                <Link to="/Sellerie" >
                     <div className="next-step">
-                        <Button node="button" waves="light">
-                            Next step
+                        <Button node="button" waves="light" className='blue-grey darken-4' >
+                            Etape précédente
                             <Icon right>
                             arrow_forward
                             </Icon>
