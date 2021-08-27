@@ -37,6 +37,7 @@ nav ul li a{
 
 .presentation{
     position: relative;
+    margin-top: 2%;
 }
 .presentation img{
     width: 100%;
@@ -51,8 +52,31 @@ nav ul li a{
     background-color: rgb(0, 0, 0, 0.8);
     color: white;
     padding: 10%;
-text-align: left;
+    text-align: left;
 
+}
+.linkMenu a{
+    color: aliceblue;
+}
+
+.linkMenu:hover{
+    transform: scale(1.03);
+    transition: 200ms;
+    background-color: rgba(0, 0, 0, 0.652);
+
+}
+
+.linkMenu-disable{
+    background-color: rgb(0, 0, 0, 0.8);
+    color: white;
+    padding: 10%;
+    text-align: left;
+
+}
+
+.linkMenu-disable a{
+    pointer-events: none;
+    color: rgb(223, 40, 40);
 }
 @media (max-width: 890px) {
     .menu{
@@ -85,10 +109,7 @@ text-align: left;
    right: 0;
 }
 
-.card .card-image img{
-width: 80%;
-margin: 3% auto;
-}
+
 
 /* DRIVING */
 
@@ -181,3 +202,84 @@ margin: 3% auto;
 .sealing{
     height: 100vh;
 }
+.sealing-carousel{
+    width: 60%;
+    margin: 0 auto;
+}
+
+.sealing-carousel img{
+    width: 100%;
+}
+/* INNCUSTON */
+.inncustom-carousel{
+    width: 100%;
+    height: 400px;
+    margin: 0 auto;
+}
+.inncustom-carousel img{
+    width: 100%;
+    height: 400px;
+}
+/* anthony*/
+
+.configurator .presentation-version{
+    position: relative;
+    color: blanchedalmond;
+    display: flex;
+    justify-content: center;
+    margin-bottom: -20%;
+    padding-top: 10%;
+    z-index: 2;
+    font-family: 'Hall Fetica Narrow Italic', sans-serif;
+    font-size: 60px;
+    }
+
+    .start-config-button{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin-top: -10%;
+        z-index: 4;
+    }
+
+    .start-config-button button{
+        
+        z-index: 4;
+       
+        background-color: blanchedalmond;
+        color: black;
+        font-family: 'Hall Fetica Narrow Italic', sans-serif;
+        font-size: 24px;
+
+    }
+
+    .start-config-button button:hover{
+       background-color: rgb(49, 49, 49);
+       color: blanchedalmond;
+       transition: 300ms;
+       transform : scale(1.05);
+    }
+    .presentation-info{
+
+    font-family: 'Hall Fetica Narrow Italic', sans-serif;
+    padding-left: 40px;
+    margin-top: 20px;
+
+    }
+    .margin-config{
+        margin-top: 10%;
+    }
+    .border-clean{
+        border-top: grey 1px solid;
+        width: 50%;
+        margin-bottom: 40px;
+
+    }
+    .picture-technique{
+        width: 100%;
+        padding: 20px;
+    }
+
+    .picture-technique-perf{
+        width: 100%;
+    }

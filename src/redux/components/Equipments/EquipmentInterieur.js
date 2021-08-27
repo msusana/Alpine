@@ -1,14 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getEquipmentInterieur, deleteEquipmentInterieur} from "../../actions";
-import { Carousel, Row, Col, Card, CardTitle, Collection, CollectionItem, Button } from 'react-materialize'; 
-
+import { Carousel, Row, Col, Card, CardTitle, Icon, Button } from 'react-materialize'; 
+import Menu from "../Menu";
 
 
 const EquipmentInterieur = ({state, equipmentInterieur, getEquipmentInterieur, deleteEquipmentInterieur, selectedEquipmentInterieur}) => { 
     console.log(state)
-    const mapInterieurJson = () =>{
-      
+ 
+    const mapInterieurJson = () =>
         equipmentInterieur.map((equipment)=>{
             return(
                 <Col key ={equipment} m={3} s={12}>
@@ -17,20 +17,21 @@ const EquipmentInterieur = ({state, equipmentInterieur, getEquipmentInterieur, d
                     header={<CardTitle image={equipment.picture}/>}>
                         <p className='equipmentName'>{equipment.name}</p>
                         <p>{equipment.price} <i class="material-icons">attach_money</i></p>
-                        <Button node="a" small  waves="light" onClick = {()=>getEquipmentInterieur(equipment)}
-                            style={{
-                            marginRight: '5px'
-                            }}
-                        >
-                            Ajuter
-                        </Button>
+                        <Button onClick = {()=>getEquipmentInterieur(equipment)}
+                        floating
+                        icon={<Icon>add</Icon>}
+                        large
+                        node="button"
+                        waves="light"
+                    />
+                        
                     </Card> 
                 </Col>
             )
          })
-    }
-    const mapInterieurSelected = () =>{
-        return selectedEquipmentInterieur.map((equipment)=>{
+    
+    const mapInterieurSelected = () =>
+         selectedEquipmentInterieur.map((equipment)=>{
             return(
                 <Col key ={equipment} m={3} s={12}>
                     <Card className='itemDriving'
@@ -50,51 +51,30 @@ const EquipmentInterieur = ({state, equipmentInterieur, getEquipmentInterieur, d
                 </Col>
             )
          })
-    }
+    
+    const mappedPics = () => state.currentSelection.view.map((pictures) => {
+        return (
+            `${pictures}`
+        )
+    })
     return (
         <div className='itemEquipment'>
-            <Row>
-                <Col m={8} s={12}>
+            <div className='menu'>
+             <Menu />
+            </div> 
+            <div className='inncustom-carousel'>
                     <Carousel
                     images={[
-                        'https://picsum.photos/250/250?image=0',
-                        'https://picsum.photos/250/250?image=1',
-                        'https://picsum.photos/250/250?image=2',
-                        'https://picsum.photos/250/250?image=3',
-                        'https://picsum.photos/250/250?image=4'
+                      mappedPics()
                     ]}
                     options={{
                         fullWidth: true,
                         indicators: true
                     }}
                     />
-                </Col>
-                <Col m={4} s={12}>
-                    <Row>
-                        <Col m={6} s={12}>
-                            <Collection>
-                            <CollectionItem href="#">
-                                Alvin
-                            </CollectionItem>
-                            <CollectionItem
-                                active
-                                href="#"
-                            >
-                                Alvin
-                            </CollectionItem>
-                            <CollectionItem href="#">
-                                Alvin
-                            </CollectionItem>
-                            <CollectionItem href="#">
-                                Alvin
-                            </CollectionItem>
-                            </Collection>
-                        </Col>
-                    </Row>
-                </Col>
-            </Row>
+               </div>
             <Row>
-                {selectedEquipmentInterieur.length !== 0 && 
+                {selectedEquipmentInterieur.length !== [] && 
                     mapInterieurSelected()
                 }
             </Row>

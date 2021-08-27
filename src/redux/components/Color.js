@@ -44,7 +44,7 @@ console.log(state)
 
     return(
        <div className='color'>
-    <div className='menu'>
+        <div className='menu'>
         <Menu />
         </div> 
         <h3 className="car-name">{state.currentSelection.name}</h3>

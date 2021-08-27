@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Row, Col, Carousel, Button, Icon } from 'react-materialize';
 import { Link } from 'react-router-dom';
 import { parseSealSelected } from "../actions";
+import Menu from "./Menu";
 
 
 
@@ -22,9 +23,7 @@ const Sealing = ({state, parseSealSelected}) => {
                     <Col className="" s={6} m={6} >
                        <div className="custom-color-select">
                         <img src={seal.picture} onClick={() => (getSeal(seal))}/>
-                       {seal.name}
-                       <br/>
-                       <i class="material-icons">attach_money</i>
+                       {seal.name}  <i class="material-icons">attach_money</i>
                         {seal.price}
                        </div>
                     </Col>
@@ -42,12 +41,20 @@ const Sealing = ({state, parseSealSelected}) => {
     return(
 
        <div className='sealing'>
+            <div className='menu'>
+        <Menu />
+        </div> 
            <h3 className="car-name">{state.currentSelection.name}</h3>
            <Row>
                 {displaySeal()}
             </Row>
+            {state.currentSelection.sealing === null && 
+                <div className='sealing-carousel'>
+                    <img src={mappedSeal[0].picture}></img>
+                 </div>
+           }  
             {state.currentSelection.sealing !== null && 
-                <div className="container">
+                <div className="sealing-carousel">
                     <Carousel 
                         className="carrousel-select"
                         carouselId="Carousel-3"
@@ -74,35 +81,30 @@ const Sealing = ({state, parseSealSelected}) => {
                     <h1 className="select-car-please"> Please, select a car.</h1>
                 </div>
             }
-            
-            <Row>
-                <Col m={2}>
+                 <div className="containerButton">
                     <Link to="/Jantes">
-                        <div className="next-step">
-                            <Button node="button" waves="light">
-                                Previous step
-                                <Icon right>
+                       
+                        <Button node="button" waves="light" className='blue-grey darken-4'>
+                            <Icon left>
                                 arrow_back
-                                </Icon>
-                            </Button>
-                        </div>
+                            </Icon>
+                            Etape précédente
+                            
+                        </Button>
+                        
                     </Link>
-                </Col>
-                <Col m={8}>
-                </Col>
-                <Col m={2}>
+
                     <Link to="/Equipements">
-                        <div className="next-step">
-                            <Button node="button" waves="light">
-                                Next step
-                                <Icon right>
-                                arrow_forward
-                                </Icon>
-                            </Button>
-                        </div>
+                      
+                        <Button node="button" waves="light" className='blue-grey darken-4'>
+                            Etape suivante
+                            <Icon right>
+                             arrow_forward
+                            </Icon>
+                        </Button>
+                        
                     </Link>
-                </Col>
-            </Row>
+            </div>
         </div>
     )}
 
