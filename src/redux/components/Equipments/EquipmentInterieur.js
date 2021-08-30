@@ -9,63 +9,69 @@ const EquipmentInterieur = ({state, equipmentInterieur, getEquipmentInterieur, d
     console.log(state)
  
     const mapInterieurJson = () =>
-        equipmentInterieur.map((equipment)=>{
+        equipmentInterieur.map((innCustom)=>{
+            
             return(
-                <Col key ={equipment} m={3} s={12}>
-                    <Card className='itemDriving'
-                    key={equipment}
-                    header={<CardTitle image={equipment.picture}/>}>
-                        <p className='equipmentName'>{equipment.name}</p>
-                        <p>{equipment.price} <i class="material-icons">attach_money</i></p>
-                        <Button onClick = {()=>getEquipmentInterieur(equipment)}
+                <Col key ={innCustom} m={3} s={12} className='itemDriving'>
+                 <img src={innCustom.picture}></img>
+                 {
+                  innCustom.price === 0 &&
+                     <>
+                    <p className='center'><strong>Option intégrée</strong></p>
+                    <p className='equipmentName truncate'>{innCustom.name}</p>
+                    </>
+                 }
+                  {
+                  innCustom.price !== 0 &&
+                    <>
+                    <p className='equipmentName truncate'>{innCustom.name}</p>
+                    <p>{innCustom.price} <i class='fas fa-comment-dollar'></i> <Button onClick = {()=>getEquipmentInterieur(innCustom)}
+                        className='right'
                         floating
                         icon={<Icon>add</Icon>}
-                        large
+                        small
                         node="button"
                         waves="light"
-                    />
-                        
-                    </Card> 
+                    /></p>
+                    </>
+                 }
                 </Col>
             )
-         })
+        })
+      
     
     const mapInterieurSelected = () =>
-         selectedEquipmentInterieur.map((equipment)=>{
+         selectedEquipmentInterieur.map((innCustom)=>{
             return(
-                <Col key ={equipment} m={3} s={12}>
-                    <Card className='itemDriving'
-                    key={equipment}
-                    header={<CardTitle image={equipment.picture}/>}>
-
-                        <p className='equipmentName'>{equipment.name}</p>
-                        <p>{equipment.price} <i class="material-icons">attach_money</i></p>
-                        <Button node="a" small  waves="light" onClick = {()=>deleteEquipmentInterieur(equipment)}
-                            style={{
-                            marginRight: '5px'
-                            }}
-                        >
-                            Suprimer
-                        </Button>
-                    </Card> 
+                <Col key ={innCustom} m={3} s={12} className='itemDriving'>
+                    <img  src={innCustom.picture}></img>
+                   <Button onClick = {()=>deleteEquipmentInterieur(innCustom)}
+                        className="red right deleteInncustom"
+                        floating
+                        icon={<Icon>delete_forever</Icon>}
+                        small                        
+                        node="button"
+                        waves="light"
+                        />
                 </Col>
             )
          })
     
-    const mappedPics = () => state.currentSelection.view.map((pictures) => {
+    const mappedSelectionPictures = () => selectedEquipmentInterieur.map((innCustom)=>{
         return (
-            `${pictures}`
+            `${innCustom.picture}`
         )
-    })
+       })
     return (
         <div className='itemEquipment'>
             <div className='menu'>
              <Menu />
             </div> 
+            {selectedEquipmentInterieur.length === 0 && 
             <div className='inncustom-carousel'>
                     <Carousel
                     images={[
-                      mappedPics()
+                        equipmentInterieur[0].picture
                     ]}
                     options={{
                         fullWidth: true,
@@ -73,9 +79,29 @@ const EquipmentInterieur = ({state, equipmentInterieur, getEquipmentInterieur, d
                     }}
                     />
                </div>
-            <Row>
-                {selectedEquipmentInterieur.length !== [] && 
-                    mapInterieurSelected()
+            }
+            {selectedEquipmentInterieur.length !== 0 && 
+              <div className='inncustom-carousel'>
+              <Carousel
+              images={[
+                equipmentInterieur[0].picture,
+                mappedSelectionPictures()
+              ]}
+              options={{
+                  fullWidth: true,
+                  indicators: true
+              }}
+              />
+             </div>
+    
+            }
+            <Row className='optSelected'>
+            
+                {selectedEquipmentInterieur.length !== 0 && 
+                < >
+                <h3>Options choisis</h3>
+                    {mapInterieurSelected()}
+                    </>
                 }
             </Row>
             <Row>
