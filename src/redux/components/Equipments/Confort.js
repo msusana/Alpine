@@ -1,101 +1,115 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Carousel, Row, Col, Card, CardTitle, Collection, CollectionItem } from 'react-materialize'; 
-import { getConfort, deleteConfort} from "../../actions";
-
-const Confort = ({state, confort, getConfort, deleteConfort}) => {
-console.log(confort)
-const onConfort = (selection, data) => {
-
-        if(state.confort.length === 0){
-            getConfort(data)
-        }else{
-                for(var i = 0; i < state.confort.length; i++){
-                      if(state.confort[i].name === selection){
-                        deleteConfort(data);
-                        break;
-                    }else if(state.confort[i].name !== selection){
-                        getConfort(data);
-                        break;
-                    }
-                }
-           
-        }
-}
+import { deleteConfort, getConfort} from "../../actions";
+import { Carousel, Row, Col, Icon, Button } from 'react-materialize'; 
+import Menu from "../Menu";
 
 
-return(
-    <div className='itemEquipment'>
-        <Row>
-        <Col m={8} s={12}>
-        <Carousel
-        carouselId="Carousel-61"
-        images={[
-            state.currentSelection.mainPic
-           
-        ]}
-        options={{
-            fullWidth: true,
-            indicators: true
-        }}
-        />
-        </Col>
-        <Col m={4} s={12}>
-        <Row>
-            <Col
-                m={6}
-                s={12}
-            >
-                <Collection>
-                <CollectionItem href="#">
-                    Alvin
-                </CollectionItem>
-                <CollectionItem
-                    active
-                    href="#"
-                >
-                    Alvin
-                </CollectionItem>
-                <CollectionItem href="#">
-                    Alvin
-                </CollectionItem>
-                <CollectionItem href="#">
-                    Alvin
-                </CollectionItem>
-                </Collection>
-            </Col>
-            </Row>
-        </Col>
-        </Row>
-        <Row>
-   {
-         confort.map((equipment, index) => (
-            <Col m={3} s={12} onClick={() => onConfort(equipment.name, equipment)} className={state.confort ? confort[`${index}`].name === state.confort.name ? 'selected' : '' : ""} >
-                <Card className='itemDriving'
-                key={equipment}
-                header={<CardTitle image={equipment.picture}/>}
-                > 
-                <p className='equipmentName'>{equipment.name}</p>
-                <p>{equipment.price} <i class="material-icons">attach_money</i></p>
-                </Card> 
-            </Col>
-         ))}
-        </Row>
+const Confort = ({state, getConfort, deleteConfort}) => { 
  
-   
+    const mapConfortJson = () =>
+        state.jsonOption.equipment.confort.map((confort, index)=>{
+            
+            return(
+                <Col key ={confort} m={3} s={12} className={state.currentSelection.equipment.confort ? state.jsonOption.equipment.confort[`${index}`].name === state.currentSelection.equipment.confort.name ? 'selected itemDriving' : 'itemDriving' : "itemDriving"} >
+                 <img src={confort.picture}></img>
+                 {
+                  confort.price === 0 &&
+                     <>
+                    <p className='center'><strong>Option intégrée</strong></p>
+                    <p className='equipmentName truncate'>{confort.name}</p>
+                    </>
+                 }
+                  {
+                  confort.price !== 0 &&
+                    <>
+                    <p className='equipmentName truncate'>{confort.name}</p>
+                    <p>{confort.price} <i class='fas fa-comment-dollar'></i> 
+                        {state.currentSelection.equipment.confort && 
+                        <Button onClick = {()=>deleteConfort()}
+                            className='right red'
+                            floating
+                            icon={<Icon>delete_forever</Icon>}
+                            small
+                            node="button"
+                            waves="light"
+                        />}
+                        {state.currentSelection.equipment.confort === null && 
+                        <Button onClick = {()=>getConfort(confort)}
+                            className='right'
+                            floating
+                            icon={<Icon>add</Icon>}
+                            small
+                            node="button"
+                            waves="light"
+                        />}
+                    
+                    </p>
+                    </>
+                 }
+                </Col>
+            )
+        })
+      
     
-    </div>
-)}
+    const mappedSelectionPictures = () => state.jsonOption.equipment.confort.map((confort)=>{
+        return (
+            `${confort.picture}`
+        )
+       })
+
+    
+    return (
+        <div className='itemEquipment'>
+            <div className='menu'>
+             <Menu />
+            </div> 
+            {state.currentSelection.equipment.confort === null && 
+            <div className='inncustom-carousel'>
+                    <Carousel
+                    images={[
+                        state.jsonOption.equipment.confort[0].picture,
+                        state.jsonOption.equipment.confort[2].picture,
+                    ]}
+                    options={{
+                        fullWidth: true,
+                        indicators: true
+                    }}
+                    />
+               </div>
+            }
+              {state.currentSelection.equipment.confort && 
+            <div className='inncustom-carousel'>
+                    <Carousel
+                    images={[
+                        mappedSelectionPictures()
+                    ]}
+                    options={{
+                        fullWidth: true,
+                        indicators: true
+                    }}
+                    />
+               </div>
+            }
+            <Row>
+                {mapConfortJson()}
+            </Row>
+         
+    
+    
+        
+        </div>
+    )
+}
 const mapStateToProps = state =>{
     return{
         state : state,
-        confort: state.jsonOption.equipment.confort
     }
 }
 const mapDispatchToProps = dispatch => {
     return{
-        getConfort: (data) => dispatch(getConfort(data)),
-        deleteConfort: (data) => dispatch(deleteConfort(data)),
+        getConfort : (data) => dispatch(getConfort(data)),
+        deleteConfort : () => dispatch(deleteConfort()),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Confort)

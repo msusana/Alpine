@@ -99,8 +99,6 @@ const Rims = ({state, parseRimsSelected}) => {
                         </Button>
                         
                     </Link>
-               
-                   
             </div>
         </div>
     )}

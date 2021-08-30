@@ -1,124 +1,118 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getDesign, deleteDesign} from "../../actions";
-import { Carousel, Row, Col, Card, CardTitle, Collection, CollectionItem } from 'react-materialize'; 
+import { deleteDesign, getDesign} from "../../actions";
+import { Carousel, Row, Col, Icon, Button } from 'react-materialize'; 
+import Menu from "../Menu";
 
-const Design = ({state, design, getDesign, deleteDesign}) => { 
 
-
-    const onDesign = (data) => {
-       
-        if(state.design.length === 0){
-            getDesign(data)
-        }else{
-                for(var i = 0; i < state.design.length; i++){
-                      if(state.design[i].name === data.name){
-                        deleteDesign(data);
-                        break;
-                    }else{
-                        for(var a = 0; a < state.design.length; a++){
-                       if(state.design[a].name !== data.name){
-                        getDesign(data);
-                        break; 
-                    } 
-                }
-                    }
-                }
-           
-             }
-        }
-    
-    function classDesign(name){
-       
-        for(var i = 0; i < state.design.length; i++){
-            if(state.design[i].name === name){
-                  let nameClass = "selected";
-                  return nameClass  
+const Design = ({state, getDesign, deleteDesign}) => { 
+    const mapDesignJson = () =>
+    state.jsonOption.equipment.design.map((design)=>{
         
-    }
-}
-    }
-console.log(classDesign('Pack héritage'))
-const mapDesign = () =>
-      
-         design.map((equipment)=>{
-             return(
-              <Col key ={equipment} m={3} s={12} onClick={() => onDesign(equipment)}  className={classDesign(equipment.name)}>
-                <Card className='itemDriving'
-                key={equipment}
-                header={<CardTitle image={equipment.picture}/>}
-                > 
-                <p>{()=> classDesign(equipment.name)}</p>
-                <p className='equipmentName'>{equipment.name}</p>
-                <p>{equipment.price} <i class="material-icons">attach_money</i></p>
-                </Card> 
+        return(
+            <Col key ={design} m={6} s={12} className='itemDriving'>
+             <img src={design.picture}></img>
+                <p className='equipmentName truncate'>{design.name}</p>
+                <p>{design.price} <i class='fas fa-comment-dollar'></i> 
+                    <Button onClick = {()=>getDesign(design)}
+                    className='right'
+                    floating
+                    icon={<Icon>add</Icon>}
+                    small
+                    node="button"
+                    waves="light"
+                /></p>
+             
             </Col>
-            )
-         }
-           
-         )
+        )
+    })
+  
 
-return(
-    <div className='itemEquipment'>
-        <Row>
-        <Col m={8} s={12}>
-        <Carousel
-        carouselId="Carousel-61"
-        images={[
-            state.currentSelection.mainPic
-           
-        ]}
-        options={{
-            fullWidth: true,
-            indicators: true
-        }}
-        />
-        </Col>
-        <Col m={4} s={12}>
-        <Row>
-            <Col
-                m={6}
-                s={12}
-            >
-                <Collection>
-                <CollectionItem href="#">
-                    Alvin
-                </CollectionItem>
-                <CollectionItem
-                    active
-                    href="#"
-                >
-                    Alvin
-                </CollectionItem>
-                <CollectionItem href="#">
-                    Alvin
-                </CollectionItem>
-                <CollectionItem href="#">
-                    Alvin
-                </CollectionItem>
-                </Collection>
+const mapConfortSelected = () =>
+     state.currentSelection.equipment.design.map((design)=>{
+        return(
+            <Col key ={design} m={6} s={12} className='itemDriving selected'>
+                <img  src={design.picture}></img>
+                <p className='equipmentName truncate'>{design.name}</p>
+                <p>{design.price} <i class='fas fa-comment-dollar'></i> </p>
+               <Button onClick = {()=>deleteDesign(design)}
+                    className="red right deleteInncustom"
+                    floating
+                    icon={<Icon>delete_forever</Icon>}
+                    small                        
+                    node="button"
+                    waves="light"
+                    />
             </Col>
-            </Row>
-        </Col>
-        </Row>
-        <Row>
- {mapDesign()}
-        </Row>
- 
+        )
+     })
    
+      
     
-    </div>
-)}
+    const mappedDesignPictures = () => state.currentSelection.equipment.design.map((design)=>{
+        return (
+            `${design.picture}`
+        )
+       })
+       const mappedPics = () => state.currentSelection.view.map((pictures) => {
+        return (
+            `${pictures}`
+        )
+    })
+    
+    return (
+        <div className='itemEquipment'>
+            <div className='menu'>
+             <Menu />
+            </div> 
+            {state.currentSelection.equipment.design.length === 0 && 
+            <div className='inncustom-carousel'>
+                    <Carousel
+                    images={[
+                     mappedPics()
+                    ]}
+                    options={{
+                        fullWidth: true,
+                        indicators: true
+                    }}
+                    />
+               </div>
+            }
+              {state.currentSelection.equipment.design.length !== 0 && 
+            <div className='inncustom-carousel'>
+                    <Carousel
+                    images={[
+                        mappedDesignPictures()
+                    ]}
+                    options={{
+                        fullWidth: true,
+                        indicators: true
+                    }}
+                    />
+               </div>
+            }
+            <Row>
+                {state.currentSelection.equipment.design &&
+                mapConfortSelected()
+                }
+
+                {state.jsonOption.equipment.design &&
+                mapDesignJson()}
+            </Row>
+         
+        
+        </div>
+    )
+}
 const mapStateToProps = state =>{
     return{
         state : state,
-        design: state.jsonOption.equipment.design
     }
 }
 const mapDispatchToProps = dispatch => {
     return{
-        getDesign: (data) => dispatch(getDesign(data)),
-        deleteDesign: (data) => dispatch(deleteDesign(data)),
+        getDesign : (data) => dispatch(getDesign(data)),
+        deleteDesign : (data) => dispatch(deleteDesign(data)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Design)

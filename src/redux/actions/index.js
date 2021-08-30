@@ -87,14 +87,14 @@ export const getConfort = (data) => {
     }
     
 }
-export const deleteConfort  = (data) => {
+export const deleteConfort  = () => {
     return{
        type : 'DELETE_CONFORT',
-       data
     }
     
 }
 export const getDesign = (data) => {
+    console.log(data)
     return{
        type : 'GET_DESIGN',
        data
@@ -102,6 +102,7 @@ export const getDesign = (data) => {
     
 }
 export const deleteDesign  = (data) => {
+    console.log(data)
     return{
        type : 'DELETE_DESIGN',
        data
@@ -117,15 +118,66 @@ export const getEquipmentInterieur = (data) => {
 }
 export const deleteEquipmentInterieur  = (data) => {
     return{
-       type : 'DELETE_EQUIPMENT_EXT',
+       type : 'DELETE_EQUIPMENT_INT',
        data
     }
     
 }
 
+export const getStirrups = (data) => {
+    return{
+       type : 'GET_STIRRUPS',
+       data
+    }
+    
+}
+export const deleteStirrups  = () => {
+    return{
+       type : 'DELETE_STIRRUPS',
+    }
+    
+}
+export const getLogo = (data) => {
+    return{
+       type : 'GET_LOGO',
+       data
+    }
+    
+}
+export const deleteLogo  = () => {
+    return{
+       type : 'DELETE_LOGO',
+    }
+    
+}
 
 
-
+export const getTelemetrics = (data) => {
+    return{
+       type : 'GET_TELEMETRICS',
+       data
+    }
+    
+}
+export const deleteTelemetrics = () => {
+    return{
+       type : 'DELETE_TELEMETRICS',
+    }
+    
+}
+export const getAudioSystem = (data) => {
+    return{
+       type : 'GET_AUDIO',
+       data
+    }
+    
+}
+export const deleteAudioSystem  = () => {
+    return{
+       type : 'DELETE_AUDIO',
+    }
+    
+}
 
 export const getResJson = (version) => {
 

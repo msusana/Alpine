@@ -19,6 +19,12 @@ export const initialState = {
       innCustom : [],
       parkAssist:null,
       exhaust: null, 
+      confort:null,
+      design: [],
+      logo: null, 
+      stirrups: null,
+      telemetrics: null,
+      audioSystem: null
     },
   }, 
  
@@ -98,7 +104,6 @@ export const initialState = {
             parkAssist: action.data
           }}
         }
-        console.log("parkassist : ", newState);
         return newState}
         case "DELETE_PARKASSIST":{
           let newState = {
@@ -110,7 +115,7 @@ export const initialState = {
                 parkAssist:null
           }}
         }
-        console.log("delete parkassist : ", newState);
+  
         return newState}
         case "GET_EXHAUST":{
           let newState ={
@@ -121,7 +126,6 @@ export const initialState = {
                 ...state.currentSelection.equipment, 
                 exhaust: action.data
           }}}
-        console.log("exhaust : ", newState);
         return newState}
         case "DELETE_EXHAUST":{
           let newState ={
@@ -132,31 +136,66 @@ export const initialState = {
                 ...state.currentSelection.equipment,
                 exhaust: null
           }}}
-        console.log("delete exhaust : ", newState);
         return newState}
         case "GET_CONFORT":{
           return{
             ...state,
-            confort: state.confort.concat(action.data)
+            currentSelection:{
+              ...state.currentSelection,
+              equipment:{
+                ...state.currentSelection.equipment,
+                confort: action.data
            
-          }
+          }}}
         }case "DELETE_CONFORT":{
           return{
             ...state,
-            confort: state.confort.filter(confort => confort.name != action.data.name)
-          }
+            currentSelection:{
+              ...state.currentSelection,
+              equipment:{
+                ...state.currentSelection.equipment,
+                confort: null
+          }}}
         }
         case "GET_DESIGN":{
-          return{
+          let newState = {
             ...state,
-            design: state.confort.concat(action.data)
-           
-          }
-        }case "DELETE_DESIGN":{
-          return{
+            currentSelection:{
+              ...state.currentSelection,
+              equipment:{
+                ...state.currentSelection.equipment,
+                design: state.currentSelection.equipment.design.concat(action.data),
+              }}, 
+              jsonOption:{
+               ...state.jsonOption,
+               equipment:{
+                 ...state.jsonOption.equipment,
+                 design: state.jsonOption.equipment.design.filter(dataDesign => dataDesign.name != action.data.name)
+               }
+            
+           }}
+           console.log('design new', newState)
+         return newState
+       }
+        case "DELETE_DESIGN":{
+          let newState = {
             ...state,
-            design: state.confort.filter(confort => confort.name != action.data.name)
-          }
+            currentSelection:{
+              ...state.currentSelection,
+              equipment:{
+                ...state.currentSelection.equipment,
+                design: state.currentSelection.equipment.design.filter(dataDesign => dataDesign.name != action.data.name),
+              }}, 
+              jsonOption:{
+                ...state.jsonOption,
+                equipment:{
+                  ...state.jsonOption.equipment,
+                  design: state.jsonOption.equipment.design.concat(action.data),
+                }
+            }
+           }
+           console.log('delete design', newState)
+         return newState
         }
         case "GET_EQUIPMENT_INT":{
           let newState = {
@@ -175,9 +214,8 @@ export const initialState = {
                 }
              
             }}
-          console.log("que pasa ? : ", newState);
           return newState
-        }case "DELETE_EQUIPMENT_EXT":{
+        }case "DELETE_EQUIPMENT_INT":{
           let newState = {
             ...state,
             currentSelection:{
@@ -194,8 +232,83 @@ export const initialState = {
                 }
             }
            }
-         console.log(newState);
          return newState
+        }case "GET_LOGO":{
+          return{
+            ...state,
+            currentSelection:{
+              ...state.currentSelection,
+              equipment:{
+                ...state.currentSelection.equipment,
+                logo: action.data
+           
+          }}}
+        }case "DELETE_LOGO":{
+          return{
+            ...state,
+            currentSelection:{
+              ...state.currentSelection,
+              equipment:{
+                ...state.currentSelection.equipment,
+                logo: null
+          }}}
+        }case "GET_STIRRUPS":{
+          return{
+            ...state,
+            currentSelection:{
+              ...state.currentSelection,
+              equipment:{
+                ...state.currentSelection.equipment,
+                stirrups: action.data
+           
+          }}}
+        }case "DELETE_STIRRUPS":{
+          return{
+            ...state,
+            currentSelection:{
+              ...state.currentSelection,
+              equipment:{
+                ...state.currentSelection.equipment,
+                stirrups: null
+          }}}
+        }case "GET_TELEMETRICS":{
+          return{
+            ...state,
+            currentSelection:{
+              ...state.currentSelection,
+              equipment:{
+                ...state.currentSelection.equipment,
+                telemetrics: action.data
+           
+          }}}
+        }case "DELETE_TELEMETRICS":{
+          return{
+            ...state,
+            currentSelection:{
+              ...state.currentSelection,
+              equipment:{
+                ...state.currentSelection.equipment,
+                telemetrics: null
+          }}}
+        }case "GET_AUDIO":{
+          return{
+            ...state,
+            currentSelection:{
+              ...state.currentSelection,
+              equipment:{
+                ...state.currentSelection.equipment,
+                audioSystem: action.data
+           
+          }}}
+        }case "DELETE_AUDIO":{
+          return{
+            ...state,
+            currentSelection:{
+              ...state.currentSelection,
+              equipment:{
+                ...state.currentSelection.equipment,
+                audioSystem: null
+          }}}
         }
         
           default:

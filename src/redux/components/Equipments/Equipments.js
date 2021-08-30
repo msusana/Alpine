@@ -28,8 +28,8 @@ return(
                 duration: 300, onShow: null, responsiveThreshold: Infinity, swipeable: false
             }}
             title="Confort">
-            {/* <Confort /> */}
-            <h1>TEST</h1>
+            <Confort />
+        
         </Tab> 
   
         <Tab 
@@ -37,8 +37,7 @@ return(
             duration: 300, onShow: null, responsiveThreshold: Infinity, swipeable: false
             }}
             title="Design">
-            {/* <Design /> */}
-            <h1>TEST</h1>
+            <Design />
         </Tab>
 
         <Tab 
@@ -46,8 +45,7 @@ return(
             duration: 300, onShow: null, responsiveThreshold: Infinity, swipeable: false
             }}
             title="Extérieur">
-            {/* <EquipmentExterieur /> */}
-            <h1>TEST</h1>
+            <EquipmentExterieur />
         </Tab>
 
         <Tab 
@@ -63,8 +61,7 @@ return(
             duration: 300, onShow: null, responsiveThreshold: Infinity, swipeable: false
             }}
             title="Media">
-            {/* <Media /> */}
-            <h1>TEST</h1>
+            <Media />
         </Tab>
 
         <Tab 
