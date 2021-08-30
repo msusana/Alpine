@@ -24,7 +24,8 @@ export const initialState = {
       logo: null, 
       stirrups: null,
       telemetrics: null,
-      audioSystem: null
+      audioSystem: null,
+      brake: null,
     },
   }, 
  
@@ -308,6 +309,25 @@ export const initialState = {
               equipment:{
                 ...state.currentSelection.equipment,
                 audioSystem: null
+          }}}
+        }case "GET_BRAKE":{
+          return{
+            ...state,
+            currentSelection:{
+              ...state.currentSelection,
+              equipment:{
+                ...state.currentSelection.equipment,
+                brake: action.data
+           
+          }}}
+        }case "DELETE_BRAKE":{
+          return{
+            ...state,
+            currentSelection:{
+              ...state.currentSelection,
+              equipment:{
+                ...state.currentSelection.equipment,
+                brake: null
           }}}
         }
         

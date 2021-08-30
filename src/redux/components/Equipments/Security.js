@@ -1,34 +1,25 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Carousel, Row, Col, Card, CardTitle, Button, Icon } from 'react-materialize'; 
-import { getBrake, deleteBrake, getAirbag, deleteAirbag} from "../../actions";
+import { getBrake, deleteBrake} from "../../actions";
 import Menu from "../Menu";
 
-const Security = ({state, getAirbag, deleteAirbag, getBrake, deleteBrake}) => {
+const Security = ({state, getBrake, deleteBrake}) => {
 
-const onMedia = (selection, data) => {
-    if(selection === 'Telemetrics'){
-        if(state.currentSelection.equipment.telemetrics === null){
-            getTelemetrics(data)
-            
-        }else{
-            deleteTelemetrics()
-        }
-    }
-    if(selection !== 'Telemetrics'){
-
-        if(state.currentSelection.equipment.audioSystem === null){
-            getAudioSystem(data)
-        }else if(state.currentSelection.equipment.audioSystem !== null){
-            if(state.currentSelection.equipment.audioSystem.name === selection){
-            deleteAudioSystem()
+const onSecurity = (selection, data) => {
+  
+        if(state.currentSelection.equipment.brake === null){
+            getBrake(data)
+        }else if(state.currentSelection.equipment.brake !== null){
+            if(state.currentSelection.equipment.brake.name === selection){
+            deleteBrake()
             }else{
-                getAudioSystem(data)
+                getBrake(data)
             }
         }
     }
 
-  }
+  
   
   const mappedPics = () => state.currentSelection.view.map((pictures) => {
             return (
@@ -40,7 +31,7 @@ return(
      <div className='menu'>
         <Menu />
     </div> 
-{(state.currentSelection.equipment.telemetrics === null) && (state.currentSelection.equipment.audioSystem === null) &&
+{(state.currentSelection.equipment.brake === null) && 
     <div className='inncustom-carousel'>
             <Carousel
             images={[
@@ -53,53 +44,24 @@ return(
             />
        </div>
     }
-    {(state.currentSelection.equipment.telemetrics === null) && (state.currentSelection.equipment.audioSystem) &&
+   
+     {(state.currentSelection.equipment.brake) &&
     <div className='inncustom-carousel'>
-        <img src={state.currentSelection.equipment.audioSystem.picture}></img>
+        <img src={state.currentSelection.equipment.brake.picture}></img>
        </div>
     }
-     {(state.currentSelection.equipment.telemetrics) && (state.currentSelection.equipment.audioSystem === null) &&
-    <div className='inncustom-carousel'>
-        <img src={state.currentSelection.equipment.telemetrics.picture}></img>
-       </div>
-    }
-    {(state.currentSelection.equipment.telemetrics) && (state.currentSelection.equipment.audioSystem) &&
-      <div className='inncustom-carousel'>
-      <Carousel
-      images={[
-        state.currentSelection.equipment.telemetrics.picture,
-        state.currentSelection.equipment.audioSystem.picture
-      ]}
-      options={{
-          fullWidth: true,
-          indicators: true
-      }}
-      />
-     </div>
-    }
+  
 
         <Row>
-        <Col m={3} s={12} key={state.jsonOption.equipment.mediaAndNavigation.telemetrics} onClick={() => onMedia("Telemetrics", state.jsonOption.equipment.mediaAndNavigation.telemetrics)} className={state.currentSelection.equipment.telemetrics ? 'selected itemDriving' : 'itemDriving'}>
-                <img src={state.jsonOption.equipment.mediaAndNavigation.telemetrics.picture}></img>
-                <p className='equipmentName'>{state.jsonOption.equipment.mediaAndNavigation.telemetrics.name}</p>
-                <p>{state.jsonOption.equipment.mediaAndNavigation.telemetrics.price} <i class='fas fa-comment-dollar'></i></p>
-                {state.currentSelection.equipment.telemetrics &&
-                        <>
-                        {state.jsonOption.equipment.mediaAndNavigation.telemetrics.name === state.currentSelection.equipment.telemetrics.name &&
-                            <Button onClick = {()=>deleteTelemetrics()}
-                            className="red right deleteInncustom"
-                            floating
-                            icon={<Icon>delete_forever</Icon>}
-                            small                        
-                            node="button"
-                            waves="light"/>
-                        }
-                        </>
-                    }
+        <Col m={4} s={12} className='itemDriving'>
+                <img src={state.jsonOption.equipment.safety.airbag.picture}></img>
+                <p className='center'><strong>Option intégrée</strong></p>
+                <p className='equipmentName'>{state.jsonOption.equipment.safety.airbag.name}</p>
+              
             </Col>
    {
-         state.jsonOption.equipment.mediaAndNavigation.audioSystem.map((equipment, index) => (
-            <Col m={3} s={12} key={equipment} onClick={() => onMedia(equipment.name, equipment)}  className={state.currentSelection.equipment.audioSystem ? state.jsonOption.equipment.mediaAndNavigation.audioSystem[`${index}`].name === state.currentSelection.equipment.audioSystem.name ? 'selected itemDriving' : 'itemDriving' : "itemDriving"}>
+         state.jsonOption.equipment.safety.brake.map((equipment, index) => (
+            <Col m={4} s={12} key={equipment} onClick={() => onSecurity(equipment.name, equipment)}  className={state.currentSelection.equipment.brake ? state.jsonOption.equipment.safety.brake[`${index}`].name === state.currentSelection.equipment.brake.name ? 'selected itemDriving' : 'itemDriving' : "itemDriving"}>
                 <img src={equipment.picture}></img>
 
                 {equipment.price === 0 &&
@@ -115,10 +77,10 @@ return(
                     </>
                 }
              
-                        {state.currentSelection.equipment.audioSystem &&
+                        {state.currentSelection.equipment.brake &&
                         <>
-                        {(state.jsonOption.equipment.mediaAndNavigation.audioSystem[`${index}`].name === state.currentSelection.equipment.audioSystem.name) && (state.currentSelection.equipment.audioSystem.price !== 0)&&
-                            <Button onClick = {()=>deleteAudioSystem()}
+                        {(state.jsonOption.equipment.safety.brake[`${index}`].name === state.currentSelection.equipment.brake.name) && (state.currentSelection.equipment.brake.price !== 0)&&
+                            <Button onClick = {()=>deleteBrake()}
                             className="red right deleteInncustom"
                             floating
                             icon={<Icon>delete_forever</Icon>}
@@ -144,9 +106,8 @@ const mapStateToProps = state =>{
 const mapDispatchToProps = dispatch => {
     return{
         getBrake: (data) => dispatch(getBrake(data)),
-        getAirbag: (data) => dispatch(getAirbag(data)),
         deleteBrake: () => dispatch(deleteBrake()),
-        deleteAirbag: () => dispatch(deleteAirbag()),
+       
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Security)

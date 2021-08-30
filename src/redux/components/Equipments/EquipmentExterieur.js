@@ -81,7 +81,7 @@ return(
     }
 
         <Row>
-        <Col m={4} s={12} key={state.jsonOption.equipment.extCustom.logo} onClick={() => onExtCustom(state.jsonOption.equipment.extCustom.logo, "logo")} className={state.currentSelection.equipment.logo ? 'selected itemDriving' : 'itemDriving'}>
+        <Col m={3} s={12} key={state.jsonOption.equipment.extCustom.logo} onClick={() => onExtCustom(state.jsonOption.equipment.extCustom.logo, "logo")} className={state.currentSelection.equipment.logo ? 'selected itemDriving' : 'itemDriving'}>
                 <img src={state.jsonOption.equipment.extCustom.logo.picture}></img>
                 <p className='equipmentName'>{state.jsonOption.equipment.extCustom.logo.name}</p>
                 <p>{state.jsonOption.equipment.extCustom.logo.price} <i class='fas fa-comment-dollar'></i></p>
@@ -101,7 +101,7 @@ return(
             </Col>
    {
          state.jsonOption.equipment.extCustom.stirrups.map((equipment, index) => (
-            <Col m={4} s={12} key={equipment} onClick={() => onExtCustom(equipment, equipment.name)}  className={state.currentSelection.equipment.stirrups ? state.jsonOption.equipment.extCustom.stirrups[`${index}`].name === state.currentSelection.equipment.stirrups.name ? 'selected itemDriving' : 'itemDriving' : "itemDriving"}>
+            <Col m={3} s={12} key={equipment} onClick={() => onExtCustom(equipment, equipment.name)}  className={state.currentSelection.equipment.stirrups ? state.jsonOption.equipment.extCustom.stirrups[`${index}`].name === state.currentSelection.equipment.stirrups.name ? 'selected itemDriving' : 'itemDriving' : "itemDriving"}>
                 <img src={equipment.picture}></img>
                 {equipment.price === 0 &&
                     <>

@@ -69,8 +69,7 @@ return(
             duration: 300, onShow: null, responsiveThreshold: Infinity, swipeable: false
             }}
             title="Security">
-            {/* <Security /> */}
-            <h1>TEST</h1>
+            <Security />
         </Tab>
     </Tabs>
     </div>

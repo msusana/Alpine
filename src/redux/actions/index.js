@@ -179,6 +179,19 @@ export const deleteAudioSystem  = () => {
     
 }
 
+export const getBrake = (data) => {
+    return{
+       type : 'GET_BRAKE',
+       data
+    }
+    
+}
+export const deleteBrake  = () => {
+    return{
+       type : 'DELETE_BRAKE',
+    }
+    
+}
 export const getResJson = (version) => {
 
     return (dispatch) => {
