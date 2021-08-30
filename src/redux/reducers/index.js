@@ -17,14 +17,14 @@ export const initialState = {
     sealing : null,
     equipment:{
       innCustom : [],
-      car:'test'
+      parkAssist:null,
+      exhaust: null, 
     },
   }, 
  
  
   design:[],
-  parkassist:null,
-  exhaust: null,
+  
   confort: [],
  
   };
@@ -89,29 +89,51 @@ export const initialState = {
         }
     }
         case "GET_PARKASSIST":{
-          return{
+          let newState = {
             ...state,
-            parkassist: action.data
-           
-          }
-        }case "DELETE_PARKASSIST":{
-          return{
-            ...state,
-            parkassist:null
-          }
+            currentSelection:{
+              ...state.currentSelection,
+              equipment:{
+                ...state.currentSelection.equipment,
+            parkAssist: action.data
+          }}
         }
+        console.log("parkassist : ", newState);
+        return newState}
+        case "DELETE_PARKASSIST":{
+          let newState = {
+            ...state,
+            currentSelection:{
+              ...state.currentSelection,
+              equipment:{
+                ...state.currentSelection.equipment,
+                parkAssist:null
+          }}
+        }
+        console.log("delete parkassist : ", newState);
+        return newState}
         case "GET_EXHAUST":{
-          return{
+          let newState ={
             ...state,
-            exhaust: action.data
-           
-          }
-        }case "DELETE_EXHAUST":{
-          return{
+            currentSelection:{
+              ...state.currentSelection,
+              equipment:{
+                ...state.currentSelection.equipment, 
+                exhaust: action.data
+          }}}
+        console.log("exhaust : ", newState);
+        return newState}
+        case "DELETE_EXHAUST":{
+          let newState ={
             ...state,
-            exhaust: null,
-          }
-        }
+            currentSelection:{
+              ...state.currentSelection,
+              equipment:{
+                ...state.currentSelection.equipment,
+                exhaust: null
+          }}}
+        console.log("delete exhaust : ", newState);
+        return newState}
         case "GET_CONFORT":{
           return{
             ...state,
@@ -161,7 +183,7 @@ export const initialState = {
             currentSelection:{
               ...state.currentSelection,
               equipment:{
-                ...state.jsonOption.equipment,
+                ...state.currentSelection.equipment,
                 innCustom: state.currentSelection.equipment.innCustom.filter(dataInnCustom => dataInnCustom.name != action.data.name),
               }}, 
               jsonOption:{

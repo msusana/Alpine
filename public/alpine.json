@@ -239,11 +239,7 @@
                    "price":0,
                    "picture":"/AlpineCars_app-images/configurateur/equipements/categories/confort/retro-int-electrochrome.jpg"
                 },
-                {
-                   "name":"Rétroviseurs ext. chauf. rabattables élec.",
-                   "price":504,
-                   "picture":"/AlpineCars_app-images/configurateur/equipements/categories/confort/retro-ext-chaffant.jpg"
-                },
+                
                 {
                    "name":"Pack de rangement",
                    "price":0,
@@ -253,6 +249,11 @@
                    "name":"Régulateur / limiteur de vitesse",
                    "price":0,
                    "picture":"/AlpineCars_app-images/configurateur/equipements/categories/confort/regul-limit-vitesse.jpg"
+                },
+                {
+                   "name":"Rétroviseurs ext. chauf. rabattables élec.",
+                   "price":504,
+                   "picture":"/AlpineCars_app-images/configurateur/equipements/categories/confort/retro-ext-chaffant.jpg"
                 }
              ],
              "driving":{
@@ -308,9 +309,9 @@
                          "picture":"/AlpineCars_app-images/configurateur/equipements/categories/personnalisation exterieure/etrier-gris.jpg"
                       },
                      {
-                   "name":"Logo Alpine sur les ailes avant",
-                   "price":120,
-                   "picture":"/AlpineCars_app-images/configurateur/equipements/categories/personnalisation exterieure/logo-alpine.jpg"
+                        "name":"Logo Alpine sur les ailes avant",
+                        "price":120,
+                        "picture":"/AlpineCars_app-images/configurateur/equipements/categories/personnalisation exterieure/logo-alpine.jpg"
                      }
                
              ],

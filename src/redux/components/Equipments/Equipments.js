@@ -20,8 +20,7 @@ return(
             options={{
             duration: 300, onShow: null, responsiveThreshold: Infinity, swipeable: false
             }} >
-            {/* <Conduite /> */}
-            <h1>TEST</h1>
+            <Conduite />
         </Tab> 
 
         <Tab
