@@ -124,16 +124,34 @@ export const initialState = {
             }
          }
           case "GET_EQUIPMENT":{
-            return {
-              ...state,
-              equipementsPrice : state.equipementsPrice + action.data.price,
-              currentSelection:{
-                ...state.currentSelection,
-                equipment:{
-                  ...state.currentSelection.equipment,
-              [action.component] : action.data
+            let newState = {};
+
+            if(state.currentSelection.equipment[action.component]){
+                newState = {
+                  ...state,
+                  equipementsPrice : (state.equipementsPrice - state.currentSelection.equipment[action.component].price) + action.data.price, 
+                  currentSelection:{
+                    ...state.currentSelection,
+                    equipment:{
+                      ...state.currentSelection.equipment,
+                      [action.component] : action.data
+                    }
+                  } 
                 }
+                return newState;
+            }else{
+              newState = {
+                ...state,
+                equipementsPrice : state.equipementsPrice + action.data.price, 
+                currentSelection:{
+                  ...state.currentSelection,
+                  equipment:{
+                    ...state.currentSelection.equipment,
+                    [action.component] : action.data
+                  }
+                } 
               }
+              return newState;
             }
           }
           case "DELETE_EQUIPMENT":{
