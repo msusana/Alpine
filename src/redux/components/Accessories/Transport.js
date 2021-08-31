@@ -16,16 +16,7 @@ const Transport = ({state, transport, selectedAccessoriesTransport, getAccessori
         return(
             <Col key ={transportAccessories} m={3} s={12} className='itemDriving'>
              <img src={transportAccessories.picture}></img>
-             {
-              transportAccessories.price === 0 &&
-                 <>
-                <p className='center'><strong>Option intégrée</strong></p>
-                <p className='equipmentName truncate'>{transportAccessories.name}</p>
-                </>
-             }
-              {
-              transportAccessories.price !== 0 &&
-                <>
+            
                 <p className='equipmentName truncate'>{transportAccessories.name}</p>
                 <p>{transportAccessories.price} <i className='fas fa-comment-dollar'></i> 
                 <Button onClick = {()=>getAccessories('transportAndProtection', transportAccessories)}
@@ -36,8 +27,7 @@ const Transport = ({state, transport, selectedAccessoriesTransport, getAccessori
                     node="button"
                     waves="light"
                 /></p>
-                </>
-             }
+              
             </Col>
         )
     })
@@ -48,6 +38,8 @@ const Transport = ({state, transport, selectedAccessoriesTransport, getAccessori
        return(
            <Col key ={transportCustomAccessories} m={3} s={12} className='itemDriving'>
                <img  src={transportCustomAccessories.picture}></img>
+               <p className='equipmentName truncate'>{transportCustomAccessories.name}</p>
+               <p>{transportCustomAccessories.price} <i className='fas fa-comment-dollar'></i> 
               <Button onClick = {()=>deleteAccessories('transportAndProtection', transportCustomAccessories)}
                    className="red right deleteInncustom"
                    floating
@@ -55,7 +47,7 @@ const Transport = ({state, transport, selectedAccessoriesTransport, getAccessori
                    small                        
                    node="button"
                    waves="light"
-                   />
+                   /></p>
            </Col>
        )
     })
@@ -103,20 +95,16 @@ const Transport = ({state, transport, selectedAccessoriesTransport, getAccessori
                     />
                 </div>
             }
-            <Row className='optSelected'>
+            <Row>
             
                 {selectedAccessoriesTransport.length !== 0 && 
-                <>
-                    <h3>Options choisis</h3>
-                    {mapTransportSelected()}
-                </>
+                    mapTransportSelected()
                 }
-            </Row>
-            <Row>
                 {transport.length !== 0 && 
                     mapTransportJson()
                 }
             </Row>
+            
             <Accessories />
         </div>
     )

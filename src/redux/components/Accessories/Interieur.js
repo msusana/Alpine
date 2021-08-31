@@ -16,18 +16,10 @@ const Interieur = ({state, innerAccessories,selectedAccessoriesInterieur, getAcc
         return(
             <Col key ={innCustomAccessories} m={3} s={12} className='itemDriving'>
              <img src={innCustomAccessories.picture}></img>
-             {
-              innCustomAccessories.price === 0 &&
-                 <>
-                <p className='center'><strong>Option intégrée</strong></p>
+            
                 <p className='equipmentName truncate'>{innCustomAccessories.name}</p>
-                </>
-             }
-              {
-              innCustomAccessories.price !== 0 &&
-                <>
-                <p className='equipmentName truncate'>{innCustomAccessories.name}</p>
-                <p>{innCustomAccessories.price} <i class='fas fa-comment-dollar'></i> <Button onClick = {()=>getAccessories('interior',innCustomAccessories)}
+                <p>{innCustomAccessories.price} <i class='fas fa-comment-dollar'></i> 
+                <Button onClick = {()=>getAccessories('interior',innCustomAccessories)}
                     className='right'
                     floating
                     icon={<Icon>add</Icon>}
@@ -35,8 +27,7 @@ const Interieur = ({state, innerAccessories,selectedAccessoriesInterieur, getAcc
                     node="button"
                     waves="light"
                 /></p>
-                </>
-             }
+          
             </Col>
         )
     })
@@ -48,14 +39,16 @@ const Interieur = ({state, innerAccessories,selectedAccessoriesInterieur, getAcc
             return(
                 <Col key ={innCustomAccessories} m={3} s={12} className='itemDriving'>
                     <img  src={innCustomAccessories.picture}></img>
+                    <p className='equipmentName truncate'>{innCustomAccessories.name}</p>
+                    <p>{innCustomAccessories.price} <i class='fas fa-comment-dollar'></i> 
                    <Button onClick = {()=>deleteAccessories('interior',innCustomAccessories)}
-                        className="red right deleteInncustom"
+                        className="red right"
                         floating
                         icon={<Icon>delete_forever</Icon>}
                         small                        
                         node="button"
                         waves="light"
-                        />
+                        /></p>
                 </Col>
             )
          })
@@ -103,20 +96,16 @@ const Interieur = ({state, innerAccessories,selectedAccessoriesInterieur, getAcc
                 />
                 </div>
             }
-            <Row className='optSelected'>
+            <Row>
             
                 {selectedAccessoriesInterieur.length !== 0 && 
-                < >
-                <h3>Options choisis</h3>
-                    {mapInterieurSelected()}
-                    </>
+                    mapInterieurSelected()
                 }
-            </Row>
-            <Row>
-                {   innerAccessories.length !== 0 && 
+                 {   innerAccessories.length !== 0 && 
                     mapInterieurJson()
                 }
             </Row>
+            
             <Accessories />
         </div>
     )

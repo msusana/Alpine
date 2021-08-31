@@ -15,16 +15,7 @@ const Exterieur = ({state, exteriorAccessories, selectedAccessoriesExterior, get
         return(
             <Col key ={exteriorAccessories} m={3} s={12} className='itemDriving'>
              <img src={exteriorAccessories.picture}></img>
-                {
-                exteriorAccessories.price === 0 &&
-                    <>
-                        <p className='center'><strong>Option intégrée</strong></p>
-                        <p className='equipmentName truncate'>{exteriorAccessories.name}</p>
-                    </>
-                }
-                {
-                exteriorAccessories.price !== 0 &&
-                    <>
+        
                     <p className='equipmentName truncate'>{exteriorAccessories.name}</p>
                     <p>{exteriorAccessories.price} <i className='fas fa-comment-dollar'></i> 
                     <Button onClick = {()=>getAccessories('exterior',exteriorAccessories)}
@@ -35,8 +26,7 @@ const Exterieur = ({state, exteriorAccessories, selectedAccessoriesExterior, get
                         node="button"
                         waves="light"
                     /></p>
-                    </>
-                }
+                 
             </Col>
         )
     })
@@ -47,14 +37,16 @@ const Exterieur = ({state, exteriorAccessories, selectedAccessoriesExterior, get
        return(
            <Col key ={exteriorCustomAccessories} m={3} s={12} className='itemDriving'>
                <img  src={exteriorCustomAccessories.picture}></img>
+                    <p className='equipmentName truncate'>{exteriorCustomAccessories.name}</p>
+                    <p>{exteriorCustomAccessories.price} <i className='fas fa-comment-dollar'></i> 
               <Button onClick = {()=>deleteAccessories('exterior', exteriorCustomAccessories)}
-                   className="red right deleteInncustom"
+                   className="red right"
                    floating
                    icon={<Icon>delete_forever</Icon>}
                    small                        
                    node="button"
                    waves="light"
-                   />
+                   /></p>
            </Col>
        )
     })
@@ -102,7 +94,7 @@ const Exterieur = ({state, exteriorAccessories, selectedAccessoriesExterior, get
                     />
                 </div>
             }
-            <Row className='optSelected'>
+            <Row>
             
                 {selectedAccessoriesExterior.length !== 0 && 
                     mapExteriorSelected()

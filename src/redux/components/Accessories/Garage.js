@@ -14,18 +14,9 @@ const Garage = ({state, garage, selectedAccessoriesGarage, getAccessories, delet
             return(
                 <Col key ={garageAccessories} m={3} s={12} className='itemDriving'>
                 <img src={garageAccessories.picture}></img>
-                    {
-                    garageAccessories.price === 0 &&
-                        <>
-                            <p className='center'><strong>Option intégrée</strong></p>
-                            <p className='equipmentName truncate'>{garageAccessories.name}</p>
-                        </>
-                    }
-                    {
-                    garageAccessories.price !== 0 &&
-                        <>
                         <p className='equipmentName truncate'>{garageAccessories.name}</p>
-                        <p>{garageAccessories.price} <i className='fas fa-comment-dollar'></i> <Button onClick = {()=>getAccessories('garage',garageAccessories)}
+                        <p>{garageAccessories.price} <i className='fas fa-comment-dollar'></i> 
+                        <Button onClick = {()=>getAccessories('garage',garageAccessories)}
                             className='right'
                             floating
                             icon={<Icon>add</Icon>}
@@ -33,8 +24,7 @@ const Garage = ({state, garage, selectedAccessoriesGarage, getAccessories, delet
                             node="button"
                             waves="light"
                         /></p>
-                        </>
-                    }
+                    
                 </Col>
             )
         })
@@ -44,14 +34,16 @@ const Garage = ({state, garage, selectedAccessoriesGarage, getAccessories, delet
     return(
         <Col key ={garageCustomAccessories} m={3} s={12} className='itemDriving'>
             <img  src={garageCustomAccessories.picture}></img>
+                <p className='equipmentName truncate'>{garageCustomAccessories.name}</p>
+                <p>{garageCustomAccessories.price} <i className='fas fa-comment-dollar'></i> 
             <Button onClick = {()=>deleteAccessories('garage',garageCustomAccessories)}
-                className="red right deleteInncustom"
+                className="red right"
                 floating
                 icon={<Icon>delete_forever</Icon>}
                 small                        
                 node="button"
                 waves="light"
-                />
+                /></p>
         </Col>
     )
     })
@@ -98,20 +90,16 @@ const Garage = ({state, garage, selectedAccessoriesGarage, getAccessories, delet
                     />
                 </div>
             }
-            <Row className='optSelected'>
+            <Row>
             
                 {selectedAccessoriesGarage.length !== 0 && 
-                <>
-                    <h3>Options choisis</h3>
-                    {mapGarageSelected()}
-                </>
+                    mapGarageSelected()
                 }
-            </Row>
-            <Row>
                 {garage.length !== 0 && 
                     mapGarageJson()
                 }
             </Row>
+           
             <Accessories />
         </div>
     )

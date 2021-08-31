@@ -15,18 +15,10 @@ console.log(state)
         return(
             <Col key ={multimediaSupport} m={3} s={12} className='itemDriving'>
              <img src={multimediaSupport.picture}></img>
-             {
-              multimediaSupport.price === 0 &&
-                 <>
-                <p className='center'><strong>Option intégrée</strong></p>
+           
                 <p className='equipmentName truncate'>{multimediaSupport.name}</p>
-                </>
-             }
-              {
-              multimediaSupport.price !== 0 &&
-                <>
-                <p className='equipmentName truncate'>{multimediaSupport.name}</p>
-                <p>{multimediaSupport.price} <i class='fas fa-comment-dollar'></i> <Button onClick = {()=>getAccessories('multimedia',multimediaSupport)}
+                <p>{multimediaSupport.price} <i class='fas fa-comment-dollar'></i> 
+                <Button onClick = {()=>getAccessories('multimedia',multimediaSupport)}
                     className='right'
                     floating
                     icon={<Icon>add</Icon>}
@@ -34,8 +26,7 @@ console.log(state)
                     node="button"
                     waves="light"
                 /></p>
-                </>
-             }
+             
             </Col>
         )
     })
@@ -45,6 +36,8 @@ console.log(state)
             return(
                 <Col key ={supportCustomAccessories} m={3} s={12} className='itemDriving'>
                     <img  src={supportCustomAccessories.picture}></img>
+                    <p className='equipmentName truncate'>{supportCustomAccessories.name}</p>
+                    <p>{supportCustomAccessories.price} <i class='fas fa-comment-dollar'></i>
                    <Button onClick = {()=>deleteAccessories('multimedia',supportCustomAccessories)}
                         className="red right deleteInncustom"
                         floating
@@ -52,7 +45,7 @@ console.log(state)
                         small                        
                         node="button"
                         waves="light"
-                        />
+                        /></p>
                 </Col>
             )
          })
@@ -100,20 +93,15 @@ console.log(state)
             />
             </div>
         }
-        <Row className='optSelected'>
+        <Row>
         
             {selectedAccessoriesSupport.length !== 0 && 
-            < >
-            <h3>Options choisis</h3>
-                {mapSupportSelected()}
-                </>
-            }
-        </Row>
-        <Row>
-            {   multimedia.length !== 0 && 
+                mapSupportSelected()
+            }{   multimedia.length !== 0 && 
                 mapSupportJson()
             }
         </Row>
+       
         <Accessories />
     </div>
 )
