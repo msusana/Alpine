@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Carousel, Row, Col, Card, CardTitle, Button, Icon } from 'react-materialize'; 
 import { getEquipment, deleteEquipment} from "../../actions";
 import Menu from "../Menu";
+import Equipments from "./Equipments";
 
 const Security = ({state, getEquipment, deleteEquipment}) => {
 
@@ -94,6 +95,7 @@ return(
             </Col>
          ))}
         </Row>
+        <Equipments />
  
    
     

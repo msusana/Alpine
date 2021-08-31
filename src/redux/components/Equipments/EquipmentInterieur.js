@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getEquipmentArray, deleteEquipmentArray} from "../../actions";
 import { Carousel, Row, Col, Icon, Button } from 'react-materialize'; 
 import Menu from "../Menu";
+import Equipments from "./Equipments";
 
 
 const EquipmentInterieur = ({state, equipmentInterieur, getEquipmentArray, deleteEquipmentArray, selectedEquipmentInterieur}) => { 
@@ -114,6 +115,7 @@ const EquipmentInterieur = ({state, equipmentInterieur, getEquipmentArray, delet
                 
                 }
     </Row>
+    <Equipments />
         
         </div>
     )

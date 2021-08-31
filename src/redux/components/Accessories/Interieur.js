@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Carousel, Row, Col, Button, Icon } from 'react-materialize';
 import { getAccessories, deleteAccessories } from "../../actions"; 
 import Menu from "../Menu";
+import Accessories from "./Accessories";
  
 
 const Interieur = ({state, innerAccessories,selectedAccessoriesInterieur, getAccessories, deleteAccessories}) => {
@@ -116,6 +117,7 @@ const Interieur = ({state, innerAccessories,selectedAccessoriesInterieur, getAcc
                     mapInterieurJson()
                 }
             </Row>
+            <Accessories />
         </div>
     )
 }

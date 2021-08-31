@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Carousel, Row, Col, Button, Icon } from 'react-materialize';
 import { getAccessories, deleteAccessories} from "../../actions";
 import Menu from "../Menu";
+import Accessories from "./Accessories";
  
 
 const Multimedia = ({state, multimedia, selectedAccessoriesSupport, getAccessories, deleteAccessories}) => {
@@ -113,6 +114,7 @@ console.log(state)
                 mapSupportJson()
             }
         </Row>
+        <Accessories />
     </div>
 )
 }

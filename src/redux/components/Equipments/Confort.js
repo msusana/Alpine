@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getEquipment, deleteEquipment} from "../../actions";
 import { Carousel, Row, Col, Icon, Button } from 'react-materialize'; 
 import Menu from "../Menu";
+import Equipments from "./Equipments";
 
 
 const Confort = ({state, getEquipment, deleteEquipment}) => { 
@@ -94,6 +95,7 @@ const Confort = ({state, getEquipment, deleteEquipment}) => {
             <Row>
                 {mapConfortJson()}
             </Row>
+            <Equipments />
          
     
     

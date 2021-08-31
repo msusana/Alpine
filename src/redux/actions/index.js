@@ -104,6 +104,13 @@ export const getMenu = (data) => {
     }
     
 }
+export const getEquipementPannel = (data) => {
+    return{
+       type : 'GET_EQUIPEMENT_PANNEL',
+       data
+    }
+    
+}
 
 export const getResJson = (version) => {
 

@@ -2,12 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import { Row, Col, Carousel, Button, Icon } from 'react-materialize';
 import { Link } from 'react-router-dom';
-import { parseSealSelected, getMenu } from "../actions";
+import { parseSealSelected, getMenu, getEquipementPannel } from "../actions";
 import Menu from "./Menu";
 
 
 
-const Sealing = ({state, parseSealSelected, getMenu}) => {
+const Sealing = ({state, parseSealSelected, getMenu, getEquipementPannel}) => {
 
     let mappedSeal = state.sealingJson
 
@@ -36,6 +36,12 @@ const Sealing = ({state, parseSealSelected, getMenu}) => {
             `${key}`
         )
     })
+
+    const getMenuAndPannel = () => {
+
+        getMenu('equipments');
+        getEquipementPannel();
+    }
 
     return(
 
@@ -93,7 +99,7 @@ const Sealing = ({state, parseSealSelected, getMenu}) => {
                         
                     </Link>
 
-                    <Link to="/Equipements" onClick={()=>getMenu('equipments')}>
+                    <Link to="/Conduite" onClick={()=>getMenuAndPannel()}>
                       
                         <Button node="button" waves="light" className='blue-grey darken-4'>
                             Etape suivante
@@ -116,7 +122,8 @@ const mapDispatchToProps = dispatch => {
     return{
 
         parseSealSelected: (data)=> dispatch(parseSealSelected(data)),
-        getMenu: (data)=> dispatch(getMenu(data))
+        getMenu: (data)=> dispatch(getMenu(data)),
+        getEquipementPannel : ()=>dispatch(getEquipementPannel('conduite'))
 
     }
 }

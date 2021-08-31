@@ -36,10 +36,14 @@ export const initialState = {
       garage: [],
     },
   }, 
- 
+  globalPrice : 0,
+  versionColorPrice : 0,
+  rimsPrice : 0,
+  sealPrice : 0,
+  equipementsPrice : 0,
+  accessoriesPrice : 0,
   menu: null,
-
- 
+  equipementPannel: null
   };
    
   export const dataStore = (state = initialState, action) => {
@@ -58,6 +62,7 @@ export const initialState = {
               jsonVersion : action.version,
               jsonOption : action.option,
               sealingJson : action.version.sealing.characteristic,
+              globalPrice : action.version.price,
               isFetching: false
             }
           }
@@ -78,7 +83,9 @@ export const initialState = {
                 mainPic : action.data.rims[0].pictures[0],
                 view : action.data.rims[0].pictures,
               },
-              rimsJson : action.data.rims
+              rimsJson : action.data.rims,
+              versionColorPrice : state.jsonVersion.price + action.data.price,
+            globalPrice : state.jsonVersion.price + state.rimsPrice + state.sealPrice + action.data.price
             }
           }
           case "CHOOSEN_RIMS":{
@@ -88,7 +95,9 @@ export const initialState = {
                 ...state.currentSelection,
                 rims : action.data,
                 view: action.data.pictures
-              }
+              },
+              rimsPrice : action.data.price,
+              globalPrice : state.versionColorPrice + state.sealPrice + action.data.price
             }
           } 
           case "CHOOSEN_SEAL":{
@@ -97,7 +106,9 @@ export const initialState = {
               currentSelection : {
                 ...state.currentSelection,
                 sealing : action.data
-              }
+              },
+              sealPrice : action.data.price,
+              globalPrice : state.versionColorPrice + state.rimsPrice + action.data.price
             }
           }  
             case "GET_MENU":{
@@ -106,9 +117,16 @@ export const initialState = {
               menu : action.data
               }
           }
+          case "GET_EQUIPEMENT_PANNEL":{
+            return{
+              ...state,
+            equipementPannel : action.data
+            }
+         }
           case "GET_EQUIPMENT":{
             return {
               ...state,
+              equipementsPrice : state.equipementsPrice + action.data.price,
               currentSelection:{
                 ...state.currentSelection,
                 equipment:{
@@ -121,6 +139,7 @@ export const initialState = {
           case "DELETE_EQUIPMENT":{
             return{
               ...state,
+              equipementsPrice : state.equipementsPrice - action.data.price,
               currentSelection:{
                 ...state.currentSelection,
                 equipment:{
@@ -134,6 +153,7 @@ export const initialState = {
             case "GET_EQUIPMENT_ARRAY":{
               return{
                 ...state,
+                equipementsPrice : state.equipementsPrice + action.data.price,
                 currentSelection:{
                   ...state.currentSelection,
                   equipment:{
@@ -152,6 +172,7 @@ export const initialState = {
             case "DELETE_EQUIPMENT_ARRAY":{
               return{
                 ...state,
+                equipementsPrice : state.equipementsPrice - action.data.price,
                 currentSelection:{
                   ...state.currentSelection,
                   equipment:{
@@ -170,6 +191,7 @@ export const initialState = {
               case "GET_ACCESSORIES":{
                 return{
                   ...state,
+                  accessoriesPrice : state.accessoriesPrice + action.data.price,
                   currentSelection:{
                     ...state.currentSelection,
                     accessories:{
@@ -189,6 +211,7 @@ export const initialState = {
               case "DELETE_ACCESSORIES":{
                 return{
                   ...state,
+                  accessoriesPrice : state.accessoriesPrice - action.data.price,
                   currentSelection:{
                     ...state.currentSelection,
                     accessories:{

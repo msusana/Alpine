@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getEquipmentArray, deleteEquipmentArray} from "../../actions";
 import { Carousel, Row, Col, Icon, Button } from 'react-materialize'; 
 import Menu from "../Menu";
+import Equipments from "./Equipments";
 
 
 const Design = ({state, getEquipmentArray, deleteEquipmentArray}) => { 
@@ -101,6 +102,7 @@ const mapConfortSelected = () =>
 
                 
             </Row>
+            <Equipments />
          
         
         </div>
