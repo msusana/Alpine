@@ -192,6 +192,14 @@ export const deleteBrake  = () => {
     }
     
 }
+export const getMenu = (data) => {
+    return{
+       type : 'GET_MENU',
+       data
+    }
+    
+}
+
 export const getResJson = (version) => {
 
     return (dispatch) => {

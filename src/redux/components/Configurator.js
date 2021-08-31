@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import { Row, Col, Button, Carousel, Container } from 'react-materialize';
 import Menu from "./Menu";
+import { getMenu } from "../actions";
 
-const Configurator = ({state}) => {
+const Configurator = ({state, getMenu}) => {
  
 return(
     <div>
@@ -43,7 +44,7 @@ return(
                 />  
             }
             <div className="start-config-button">
-                <Link to="/Couleur">
+                <Link to="/Couleur" onClick={()=>getMenu('color')}>
                     <Button>Commencer la Configuration</Button>
                 </Link>
             </div>
@@ -147,6 +148,7 @@ const mapStateToProps = state =>{
 }
 const mapDispatchToProps = dispatch => {
     return{
+        getMenu: (data)=> dispatch(getMenu(data))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Configurator)

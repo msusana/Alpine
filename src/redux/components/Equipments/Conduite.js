@@ -12,7 +12,7 @@ const onConduite = (selection, data) => {
             getExhaust(data)
             
         }else{
-            deleteExhaust()
+            deleteExhaust(data)
         }
     }
     if(selection !== 'Exhaust'){
@@ -21,7 +21,7 @@ const onConduite = (selection, data) => {
             getParkAssist(data)
         }else if(state.currentSelection.equipment.parkAssist !== null){
             if(state.currentSelection.equipment.parkAssist.name === selection){
-            deleteParkAssist()
+            deleteParkAssist(data)
             }else{
                 getParkAssist(data)
             }
@@ -40,62 +40,72 @@ return(
      <div className='menu'>
         <Menu />
     </div> 
-{(state.currentSelection.equipment.exhaust === null) && (state.currentSelection.equipment.parkAssist === null) &&
-    <div className='inncustom-carousel'>
-            <Carousel
-            images={[
-               mappedPics()
-            ]}
-            options={{
-                fullWidth: true,
-                indicators: true
-            }}
-            />
-       </div>
-    }
-    {(state.currentSelection.equipment.exhaust === null) && (state.currentSelection.equipment.parkAssist) &&
-    <div className='inncustom-carousel'>
-        <img src={state.currentSelection.equipment.parkAssist.picture}></img>
-       </div>
-    }
-     {(state.currentSelection.equipment.exhaust) && (state.currentSelection.equipment.parkAssist === null) &&
-    <div className='inncustom-carousel'>
-        <img src={state.currentSelection.equipment.exhaust.picture}></img>
-       </div>
-    }
-    {(state.currentSelection.equipment.exhaust) && (state.currentSelection.equipment.parkAssist) &&
-      <div className='inncustom-carousel'>
-      <Carousel
-      images={[
-        state.currentSelection.equipment.exhaust.picture,
-        state.currentSelection.equipment.parkAssist.picture
-      ]}
-      options={{
-          fullWidth: true,
-          indicators: true
-      }}
-      />
-     </div>
-    }
+        {(state.currentSelection.equipment.exhaust === null) && (state.currentSelection.equipment.parkAssist === null) &&
+            <div className='inncustom-carousel'>
+                    <Carousel
+                    images={[
+                    mappedPics()
+                    ]}
+                    options={{
+                        fullWidth: true,
+                        indicators: true
+                    }}
+                    />
+            </div>
+            }
+            {(state.currentSelection.equipment.exhaust === null) && (state.currentSelection.equipment.parkAssist) &&
+                <div className='inncustom-carousel'>
+                    <img src={state.currentSelection.equipment.parkAssist.picture}></img>
+            </div>
+            }
+            {(state.currentSelection.equipment.exhaust) && (state.currentSelection.equipment.parkAssist === null) &&
+                <div className='inncustom-carousel'>
+                    <img src={state.currentSelection.equipment.exhaust.picture}></img>
+            </div>
+            }
+            {(state.currentSelection.equipment.exhaust) && (state.currentSelection.equipment.parkAssist) &&
+                <div className='inncustom-carousel'>
+                    <Carousel
+                    images={[
+                        state.currentSelection.equipment.exhaust.picture,
+                        state.currentSelection.equipment.parkAssist.picture
+                    ]}
+                    options={{
+                        fullWidth: true,
+                        indicators: true
+                    }}
+                    />
+                </div>
+            }
 
         <Row>
-        <Col m={3} s={12} key={driving.exhaust} onClick={() => onConduite("Exhaust", driving.exhaust)} className={state.currentSelection.equipment.exhaust ? 'selected itemDriving' : 'itemDriving'}>
+            <Col m={3} s={12} key={driving.exhaust} onClick={() => onConduite("Exhaust", driving.exhaust)} className={state.currentSelection.equipment.exhaust ? 'selected itemDriving' : 'itemDriving'}>
                 <img src={driving.exhaust.picture}></img>
                 <p className='equipmentName'>{driving.exhaust.name}</p>
                 <p>{driving.exhaust.price} <i class='fas fa-comment-dollar'></i></p>
                 {state.currentSelection.equipment.exhaust &&
                         <>
                         {driving.exhaust.name === state.currentSelection.equipment.exhaust.name &&
-                            <Button onClick = {()=>deleteExhaust()}
-                            className="red right deleteInncustom"
+                            <Button 
+                            className="red right"
                             floating
                             icon={<Icon>delete_forever</Icon>}
                             small                        
                             node="button"
                             waves="light"/>
-                        }
-                        </>
-                    }
+                        }</>
+                }
+                        {(state.currentSelection.equipment.exhaust === null) &&
+                        <Button
+                        className="right"
+                        floating
+                        icon={<Icon>add</Icon>}
+                        small                        
+                        node="button"
+                        waves="light"
+                        />}
+                        
+                    
             </Col>
    {
          driving.parkAssist.map((equipment, index) => (
@@ -106,8 +116,8 @@ return(
                         {state.currentSelection.equipment.parkAssist &&
                         <>
                         {driving.parkAssist[`${index}`].name === state.currentSelection.equipment.parkAssist.name &&
-                            <Button onClick = {()=>deleteParkAssist()}
-                            className="red right deleteInncustom"
+                            <Button
+                            className="red right"
                             floating
                             icon={<Icon>delete_forever</Icon>}
                             small                        
@@ -116,6 +126,16 @@ return(
                         }
                         </>
                     }
+                        {(state.currentSelection.equipment.parkAssist === null) || (driving.parkAssist[`${index}`].name !== state.currentSelection.equipment.parkAssist.name) &&
+                            <Button
+                            className="right "
+                            floating
+                            icon={<Icon>add</Icon>}
+                            small                        
+                            node="button"
+                            waves="light"/>
+                        }
+
             </Col>
          ))}
         </Row>
@@ -134,8 +154,8 @@ const mapDispatchToProps = dispatch => {
     return{
         getExhaust: (data) => dispatch(getExhaust(data)),
         getParkAssist: (data) => dispatch(getParkAssist(data)),
-        deleteExhaust: () => dispatch(deleteExhaust()),
-        deleteParkAssist: () => dispatch(deleteParkAssist()),
+        deleteExhaust: (data) => dispatch(deleteExhaust(data)),
+        deleteParkAssist: (data) => dispatch(deleteParkAssist(data)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Conduite)

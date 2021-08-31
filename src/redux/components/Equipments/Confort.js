@@ -11,7 +11,7 @@ const Confort = ({state, getConfort, deleteConfort}) => {
         state.jsonOption.equipment.confort.map((confort, index)=>{
             
             return(
-                <Col key ={confort} m={3} s={12} className={state.currentSelection.equipment.confort ? state.jsonOption.equipment.confort[`${index}`].name === state.currentSelection.equipment.confort.name ? 'selected itemDriving' : 'itemDriving' : "itemDriving"} >
+                <Col key ={confort} m={3} s={12} className={confort.price === 0 ? 'selected itemDriving' : state.currentSelection.equipment.confort ? state.jsonOption.equipment.confort[`${index}`].name === state.currentSelection.equipment.confort.name ? 'selected itemDriving' : 'itemDriving' : "itemDriving"} >
                  <img src={confort.picture}></img>
                  {
                   confort.price === 0 &&
@@ -26,7 +26,7 @@ const Confort = ({state, getConfort, deleteConfort}) => {
                     <p className='equipmentName truncate'>{confort.name}</p>
                     <p>{confort.price} <i class='fas fa-comment-dollar'></i> 
                         {state.currentSelection.equipment.confort && 
-                        <Button onClick = {()=>deleteConfort()}
+                        <Button onClick = {()=>deleteConfort(confort)}
                             className='right red'
                             floating
                             icon={<Icon>delete_forever</Icon>}
@@ -109,7 +109,7 @@ const mapStateToProps = state =>{
 const mapDispatchToProps = dispatch => {
     return{
         getConfort : (data) => dispatch(getConfort(data)),
-        deleteConfort : () => dispatch(deleteConfort()),
+        deleteConfort : (data) => dispatch(deleteConfort(data)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Confort)

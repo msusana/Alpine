@@ -12,7 +12,7 @@ const onSecurity = (selection, data) => {
             getBrake(data)
         }else if(state.currentSelection.equipment.brake !== null){
             if(state.currentSelection.equipment.brake.name === selection){
-            deleteBrake()
+            deleteBrake(data)
             }else{
                 getBrake(data)
             }
@@ -53,7 +53,7 @@ return(
   
 
         <Row>
-        <Col m={4} s={12} className='itemDriving'>
+        <Col m={3} s={12} className='itemDriving selected'>
                 <img src={state.jsonOption.equipment.safety.airbag.picture}></img>
                 <p className='center'><strong>Option intégrée</strong></p>
                 <p className='equipmentName'>{state.jsonOption.equipment.safety.airbag.name}</p>
@@ -61,7 +61,8 @@ return(
             </Col>
    {
          state.jsonOption.equipment.safety.brake.map((equipment, index) => (
-            <Col m={4} s={12} key={equipment} onClick={() => onSecurity(equipment.name, equipment)}  className={state.currentSelection.equipment.brake ? state.jsonOption.equipment.safety.brake[`${index}`].name === state.currentSelection.equipment.brake.name ? 'selected itemDriving' : 'itemDriving' : "itemDriving"}>
+            <Col m={3} s={12} key={equipment} onClick={() => onSecurity(equipment.name, equipment)}  className={equipment.price === 0 ? 'selected itemDriving' :
+                state.currentSelection.equipment.brake ? state.jsonOption.equipment.safety.brake[`${index}`].name === state.currentSelection.equipment.brake.name ? 'selected itemDriving' : 'itemDriving' : "itemDriving"}>
                 <img src={equipment.picture}></img>
 
                 {equipment.price === 0 &&
@@ -80,8 +81,8 @@ return(
                         {state.currentSelection.equipment.brake &&
                         <>
                         {(state.jsonOption.equipment.safety.brake[`${index}`].name === state.currentSelection.equipment.brake.name) && (state.currentSelection.equipment.brake.price !== 0)&&
-                            <Button onClick = {()=>deleteBrake()}
-                            className="red right deleteInncustom"
+                            <Button
+                            className="red right deleteButton"
                             floating
                             icon={<Icon>delete_forever</Icon>}
                             small                        
@@ -106,7 +107,7 @@ const mapStateToProps = state =>{
 const mapDispatchToProps = dispatch => {
     return{
         getBrake: (data) => dispatch(getBrake(data)),
-        deleteBrake: () => dispatch(deleteBrake()),
+        deleteBrake: (data) => dispatch(deleteBrake(data)),
        
     }
 }

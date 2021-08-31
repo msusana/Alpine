@@ -108,8 +108,12 @@ nav ul li a{
    right: 0;
 }
 
-
-
+.deleteButton{
+    margin-top: -15%; 
+}
+#menuSelected a{
+    color:green;
+}
 /* DRIVING */
 
 .equipmentName{
@@ -118,9 +122,7 @@ nav ul li a{
 .itemDriving img{
     width: 100%;
 }
-.deleteInncustom{
-    margin-top: -10%;
-}
+
 /* SELECTED */
 
 .selected{

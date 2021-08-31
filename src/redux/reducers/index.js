@@ -31,7 +31,7 @@ export const initialState = {
  
  
   design:[],
-  
+  menu: null,
   confort: [],
  
   };
@@ -94,7 +94,13 @@ export const initialState = {
             sealing : action.data
           }
         }
-    }
+    }  case "GET_MENU":{
+      return{
+        ...state,
+      menu : action.data
+      }
+  }
+
         case "GET_PARKASSIST":{
           let newState = {
             ...state,

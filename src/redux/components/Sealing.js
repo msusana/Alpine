@@ -2,12 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import { Row, Col, Carousel, Button, Icon } from 'react-materialize';
 import { Link } from 'react-router-dom';
-import { parseSealSelected } from "../actions";
+import { parseSealSelected, getMenu } from "../actions";
 import Menu from "./Menu";
 
 
 
-const Sealing = ({state, parseSealSelected}) => {
+const Sealing = ({state, parseSealSelected, getMenu}) => {
 
     console.log("state sealing : ", state);
     let mappedSeal = state.sealingJson
@@ -82,7 +82,7 @@ const Sealing = ({state, parseSealSelected}) => {
                 </div>
             }
                  <div className="containerButton">
-                    <Link to="/Jantes">
+                    <Link to="/Jantes" onClick={()=>getMenu('rims')}>
                        
                         <Button node="button" waves="light" className='blue-grey darken-4'>
                             <Icon left>
@@ -94,7 +94,7 @@ const Sealing = ({state, parseSealSelected}) => {
                         
                     </Link>
 
-                    <Link to="/Equipements">
+                    <Link to="/Equipements" onClick={()=>getMenu('equipments')}>
                       
                         <Button node="button" waves="light" className='blue-grey darken-4'>
                             Etape suivante
@@ -117,6 +117,7 @@ const mapDispatchToProps = dispatch => {
     return{
 
         parseSealSelected: (data)=> dispatch(parseSealSelected(data)),
+        getMenu: (data)=> dispatch(getMenu(data))
 
     }
 }

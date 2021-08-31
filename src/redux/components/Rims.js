@@ -2,13 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import { Row, Col, Carousel, Button, Icon } from 'react-materialize';
 import { Link } from 'react-router-dom';
-import { parseRimsSelected } from "../actions";
+import { parseRimsSelected, getMenu } from "../actions";
 import Menu from "./Menu";
 
 
 
-const Rims = ({state, parseRimsSelected}) => {
-
+const Rims = ({state, parseRimsSelected, getMenu}) => {
+console.log(state)
 
     let mappedRims = state.rimsJson
 
@@ -77,7 +77,7 @@ const Rims = ({state, parseRimsSelected}) => {
                 </div>
             }
             <div className="containerButton">
-                    <Link to="/Couleur">
+                    <Link to="/Couleur" onClick={()=>getMenu('color')}>
                        
                         <Button node="button" waves="light" className='blue-grey darken-4'>
                             <Icon left>
@@ -89,7 +89,7 @@ const Rims = ({state, parseRimsSelected}) => {
                         
                     </Link>
 
-                    <Link to="/Sellerie">
+                    <Link to="/Sellerie" onClick={()=>getMenu('sellerie')}>
                       
                         <Button node="button" waves="light" className='blue-grey darken-4'>
                             Etape suivante
@@ -112,6 +112,7 @@ const mapDispatchToProps = dispatch => {
     return{
 
         parseRimsSelected: (data)=> dispatch(parseRimsSelected(data)),
+        getMenu: (data)=> dispatch(getMenu(data))
 
     }
 }

@@ -2,10 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { Row, Col, Carousel, Button, Icon } from 'react-materialize';
 import { Link } from 'react-router-dom';
-import { parseColorSelected } from "../actions";
+import { parseColorSelected, getMenu } from "../actions";
 import Menu from "./Menu";
 
-const Color = ({state, parseColorSelected}) => {
+const Color = ({state, parseColorSelected, getMenu}) => {
 
     let mappedColor = state.jsonVersion.characteristic
 
@@ -78,7 +78,7 @@ console.log(state)
            }  
           
                 {(state.version === "Pure") && (state.currentSelection.color !== null) &&
-                    <Link to="/Jantes" >
+                    <Link to="/Jantes" onClick={()=>getMenu('rims')}>
                         <div className="next-step">
                         <Button node="button" waves="light" className='blue-grey darken-4' >
                             Etape suivante
@@ -90,7 +90,7 @@ console.log(state)
                     </Link>
                 }
             {(state.version === "Legende") && (state.currentSelection.color !== null) &&
-                <Link to="/Sellerie" >
+                <Link to="/Sellerie" onClick={()=>getMenu('sellerie')}>
                     <div className="next-step">
                         <Button node="button" waves="light" className='blue-grey darken-4' >
                             Etape précédente
@@ -113,6 +113,7 @@ const mapDispatchToProps = dispatch => {
     return{
       
         parseColorSelected: (data)=> dispatch(parseColorSelected(data)),
+        getMenu: (data)=> dispatch(getMenu(data))
         
     }
 }

@@ -12,7 +12,7 @@ const onMedia = (selection, data) => {
             getTelemetrics(data)
             
         }else{
-            deleteTelemetrics()
+            deleteTelemetrics(data)
         }
     }
     if(selection !== 'Telemetrics'){
@@ -21,7 +21,7 @@ const onMedia = (selection, data) => {
             getAudioSystem(data)
         }else if(state.currentSelection.equipment.audioSystem !== null){
             if(state.currentSelection.equipment.audioSystem.name === selection){
-            deleteAudioSystem()
+            deleteAudioSystem(data)
             }else{
                 getAudioSystem(data)
             }
@@ -54,27 +54,27 @@ return(
        </div>
     }
     {(state.currentSelection.equipment.telemetrics === null) && (state.currentSelection.equipment.audioSystem) &&
-    <div className='inncustom-carousel'>
-        <img src={state.currentSelection.equipment.audioSystem.picture}></img>
+        <div className='inncustom-carousel'>
+            <img src={state.currentSelection.equipment.audioSystem.picture}></img>
        </div>
     }
      {(state.currentSelection.equipment.telemetrics) && (state.currentSelection.equipment.audioSystem === null) &&
-    <div className='inncustom-carousel'>
-        <img src={state.currentSelection.equipment.telemetrics.picture}></img>
+        <div className='inncustom-carousel'>
+            <img src={state.currentSelection.equipment.telemetrics.picture}></img>
        </div>
     }
     {(state.currentSelection.equipment.telemetrics) && (state.currentSelection.equipment.audioSystem) &&
       <div className='inncustom-carousel'>
-      <Carousel
-      images={[
-        state.currentSelection.equipment.telemetrics.picture,
-        state.currentSelection.equipment.audioSystem.picture
-      ]}
-      options={{
-          fullWidth: true,
-          indicators: true
-      }}
-      />
+        <Carousel
+        images={[
+            state.currentSelection.equipment.telemetrics.picture,
+            state.currentSelection.equipment.audioSystem.picture
+        ]}
+        options={{
+            fullWidth: true,
+            indicators: true
+        }}
+        />
      </div>
     }
 
@@ -86,8 +86,8 @@ return(
                 {state.currentSelection.equipment.telemetrics &&
                         <>
                         {state.jsonOption.equipment.mediaAndNavigation.telemetrics.name === state.currentSelection.equipment.telemetrics.name &&
-                            <Button onClick = {()=>deleteTelemetrics()}
-                            className="red right deleteInncustom"
+                            <Button
+                            className="red right deleteButton"
                             floating
                             icon={<Icon>delete_forever</Icon>}
                             small                        
@@ -96,10 +96,20 @@ return(
                         }
                         </>
                     }
+                    {state.currentSelection.equipment.telemetrics === null &&
+                            <Button 
+                            className="right deleteButton"
+                            floating
+                            icon={<Icon>add</Icon>}
+                            small                        
+                            node="button"
+                            waves="light"/>
+                        }
+
             </Col>
    {
          state.jsonOption.equipment.mediaAndNavigation.audioSystem.map((equipment, index) => (
-            <Col m={3} s={12} key={equipment} onClick={() => onMedia(equipment.name, equipment)}  className={state.currentSelection.equipment.audioSystem ? state.jsonOption.equipment.mediaAndNavigation.audioSystem[`${index}`].name === state.currentSelection.equipment.audioSystem.name ? 'selected itemDriving' : 'itemDriving' : "itemDriving"}>
+            <Col m={3} s={12} key={equipment} onClick={() => onMedia(equipment.name, equipment)}  className={equipment.price === 0 ? 'selected itemDriving' : state.currentSelection.equipment.audioSystem ? state.jsonOption.equipment.mediaAndNavigation.audioSystem[`${index}`].name === state.currentSelection.equipment.audioSystem.name ? 'selected itemDriving' : 'itemDriving' : "itemDriving"}>
                 <img src={equipment.picture}></img>
 
                 {equipment.price === 0 &&
@@ -118,8 +128,8 @@ return(
                         {state.currentSelection.equipment.audioSystem &&
                         <>
                         {(state.jsonOption.equipment.mediaAndNavigation.audioSystem[`${index}`].name === state.currentSelection.equipment.audioSystem.name) && (state.currentSelection.equipment.audioSystem.price !== 0)&&
-                            <Button onClick = {()=>deleteAudioSystem()}
-                            className="red right deleteInncustom"
+                            <Button
+                            className="red right deleteButton"
                             floating
                             icon={<Icon>delete_forever</Icon>}
                             small                        
@@ -128,6 +138,19 @@ return(
                         }
                         </>
                     }
+                     {(state.currentSelection.equipment.audioSystem === null) || (state.jsonOption.equipment.mediaAndNavigation.audioSystem[`${index}`].name !== state.currentSelection.equipment.audioSystem.name) &&
+                            <>
+                            { equipment.price !== 0 &&
+                            <Button
+                            className="right deleteButton"
+                            floating
+                            icon={<Icon>add</Icon>}
+                            small                        
+                            node="button"
+                            waves="light"/>
+                            }
+                            </>
+                        }
             </Col>
          ))}
         </Row>
@@ -145,8 +168,8 @@ const mapDispatchToProps = dispatch => {
     return{
         getTelemetrics: (data) => dispatch(getTelemetrics(data)),
         getAudioSystem: (data) => dispatch(getAudioSystem(data)),
-        deleteTelemetrics: () => dispatch(deleteTelemetrics()),
-        deleteAudioSystem: () => dispatch(deleteAudioSystem()),
+        deleteTelemetrics: (data) => dispatch(deleteTelemetrics(data)),
+        deleteAudioSystem: (data) => dispatch(deleteAudioSystem(data)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Media)

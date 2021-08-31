@@ -10,7 +10,7 @@ const Design = ({state, getDesign, deleteDesign}) => {
     state.jsonOption.equipment.design.map((design)=>{
         
         return(
-            <Col key ={design} m={4} s={12} className='itemDriving'>
+            <Col key ={design} m={3} s={12} className='itemDriving'>
              <img src={design.picture}></img>
                 <p className='equipmentName truncate'>{design.name}</p>
                 <p>{design.price} <i class='fas fa-comment-dollar'></i> 
@@ -31,12 +31,12 @@ const Design = ({state, getDesign, deleteDesign}) => {
 const mapConfortSelected = () =>
      state.currentSelection.equipment.design.map((design)=>{
         return(
-            <Col key ={design} m={4} s={12} className='itemDriving selected'>
+            <Col key ={design} m={3} s={12} className='itemDriving selected'>
                 <img  src={design.picture}></img>
                 <p className='equipmentName truncate'>{design.name}</p>
                 <p>{design.price} <i class='fas fa-comment-dollar'></i> </p>
                <Button onClick = {()=>deleteDesign(design)}
-                    className="red right"
+                    className="red right deleteButton"
                     floating
                     icon={<Icon>delete_forever</Icon>}
                     small                        
