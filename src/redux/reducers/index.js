@@ -27,12 +27,18 @@ export const initialState = {
       audioSystem: null,
       brake: null,
     },
+
+    accessories:{
+      interior : [],
+      multimedia : [],
+      transportAndProtection : [],
+      exterior : [],
+      garage: [],
+    },
   }, 
  
- 
-  design:[],
   menu: null,
-  confort: [],
+
  
   };
    
@@ -60,283 +66,145 @@ export const initialState = {
               ...state,
               isFetching:true,
             }
-        }case "CHOOSEN_COLOR":{
-          let newState = {
-            ...state,
-            currentSelection : {
-              ...state.currentSelection,
-              name : action.data.name,
-              color : action.data.color,
-              price : action.data.price,
-              mainPic : action.data.rims[0].pictures[0],
-              view : action.data.rims[0].pictures,
-            },
-            rimsJson : action.data.rims
           }
-          console.log(newState, 'colorChoice');
-          return newState
-      }
-      case "CHOOSEN_RIMS":{
-        return{
-            ...state,
-            currentSelection : {
-            ...state.currentSelection,
-            rims : action.data,
-            view: action.data.pictures
+          case "CHOOSEN_COLOR":{
+            return{
+              ...state,
+              currentSelection : {
+                ...state.currentSelection,
+                name : action.data.name,
+                color : action.data.color,
+                price : action.data.price,
+                mainPic : action.data.rims[0].pictures[0],
+                view : action.data.rims[0].pictures,
+              },
+              rimsJson : action.data.rims
+            }
           }
-        }
-      } 
-      case "CHOOSEN_SEAL":{
-        return{
-          ...state,
-          currentSelection : {
-            ...state.currentSelection,
-            sealing : action.data
+          case "CHOOSEN_RIMS":{
+            return{
+                ...state,
+                currentSelection : {
+                ...state.currentSelection,
+                rims : action.data,
+                view: action.data.pictures
+              }
+            }
+          } 
+          case "CHOOSEN_SEAL":{
+            return{
+              ...state,
+              currentSelection : {
+                ...state.currentSelection,
+                sealing : action.data
+              }
+            }
+          }  
+            case "GET_MENU":{
+              return{
+                ...state,
+              menu : action.data
+              }
           }
-        }
-    }  case "GET_MENU":{
-      return{
-        ...state,
-      menu : action.data
-      }
-  }
-
-        case "GET_PARKASSIST":{
-          let newState = {
-            ...state,
-            currentSelection:{
-              ...state.currentSelection,
-              equipment:{
-                ...state.currentSelection.equipment,
-            parkAssist: action.data
-          }}
-        }
-        return newState}
-        case "DELETE_PARKASSIST":{
-          let newState = {
-            ...state,
-            currentSelection:{
-              ...state.currentSelection,
-              equipment:{
-                ...state.currentSelection.equipment,
-                parkAssist:null
-          }}
-        }
+          case "GET_EQUIPMENT":{
+            return {
+              ...state,
+              currentSelection:{
+                ...state.currentSelection,
+                equipment:{
+                  ...state.currentSelection.equipment,
+              [action.component] : action.data
+                }
+              }
+            }
+          }
+          case "DELETE_EQUIPMENT":{
+            return{
+              ...state,
+              currentSelection:{
+                ...state.currentSelection,
+                equipment:{
+                  ...state.currentSelection.equipment,
+                  [action.component] : null
+                  }
+                }
+              }
+            }
   
-        return newState}
-        case "GET_EXHAUST":{
-          let newState ={
-            ...state,
-            currentSelection:{
-              ...state.currentSelection,
-              equipment:{
-                ...state.currentSelection.equipment, 
-                exhaust: action.data
-          }}}
-        return newState}
-        case "DELETE_EXHAUST":{
-          let newState ={
-            ...state,
-            currentSelection:{
-              ...state.currentSelection,
-              equipment:{
-                ...state.currentSelection.equipment,
-                exhaust: null
-          }}}
-        return newState}
-        case "GET_CONFORT":{
-          return{
-            ...state,
-            currentSelection:{
-              ...state.currentSelection,
-              equipment:{
-                ...state.currentSelection.equipment,
-                confort: action.data
-           
-          }}}
-        }case "DELETE_CONFORT":{
-          return{
-            ...state,
-            currentSelection:{
-              ...state.currentSelection,
-              equipment:{
-                ...state.currentSelection.equipment,
-                confort: null
-          }}}
-        }
-        case "GET_DESIGN":{
-          let newState = {
-            ...state,
-            currentSelection:{
-              ...state.currentSelection,
-              equipment:{
-                ...state.currentSelection.equipment,
-                design: state.currentSelection.equipment.design.concat(action.data),
-              }}, 
-              jsonOption:{
-               ...state.jsonOption,
-               equipment:{
-                 ...state.jsonOption.equipment,
-                 design: state.jsonOption.equipment.design.filter(dataDesign => dataDesign.name != action.data.name)
+            case "GET_EQUIPMENT_ARRAY":{
+              return{
+                ...state,
+                currentSelection:{
+                  ...state.currentSelection,
+                  equipment:{
+                    ...state.currentSelection.equipment,
+                    [action.component]: state.currentSelection.equipment[action.component].concat(action.data),
+                  }}, 
+                  jsonOption:{
+                   ...state.jsonOption,
+                   equipment:{
+                     ...state.jsonOption.equipment,
+                     [action.component]: state.jsonOption.equipment[action.component].filter(equipment => equipment.name != action.data.name)
+                   }
+                }
+              }
+            }
+            case "DELETE_EQUIPMENT_ARRAY":{
+              return{
+                ...state,
+                currentSelection:{
+                  ...state.currentSelection,
+                  equipment:{
+                    ...state.currentSelection.equipment,
+                    [action.component]: state.currentSelection.equipment[action.component].filter(equipment => equipment.name != action.data.name),
+                  }}, 
+                  jsonOption:{
+                    ...state.jsonOption,
+                    equipment:{
+                      ...state.jsonOption.equipment,
+                      [action.component]: state.jsonOption.equipment[action.component].concat(action.data),
+                    }
+                  }
                }
-            
-           }}
-           console.log('design new', newState)
-         return newState
-       }
-        case "DELETE_DESIGN":{
-          let newState = {
-            ...state,
-            currentSelection:{
-              ...state.currentSelection,
-              equipment:{
-                ...state.currentSelection.equipment,
-                design: state.currentSelection.equipment.design.filter(dataDesign => dataDesign.name != action.data.name),
-              }}, 
-              jsonOption:{
-                ...state.jsonOption,
-                equipment:{
-                  ...state.jsonOption.equipment,
-                  design: state.jsonOption.equipment.design.concat(action.data),
+              }
+              case "GET_ACCESSORIES":{
+                return{
+                  ...state,
+                  currentSelection:{
+                    ...state.currentSelection,
+                    accessories:{
+                      ...state.currentSelection.accessories,
+                      [action.component]: state.currentSelection.accessories[action.component].concat(action.data),
+                    }
+                  }, 
+                    jsonOption:{
+                     ...state.jsonOption,
+                     accessories:{
+                      ...state.jsonOption.accessories,
+                      [action.component]: state.jsonOption.accessories[action.component].filter(accessorie => accessorie.name !== action.data.name)
+                     }
+                    }
+                  }
                 }
-            }
-           }
-           console.log('delete design', newState)
-         return newState
-        }
-        case "GET_EQUIPMENT_INT":{
-          let newState = {
-             ...state,
-             currentSelection:{
-               ...state.currentSelection,
-               equipment:{
-                 ...state.currentSelection.equipment,
-                 innCustom: state.currentSelection.equipment.innCustom.concat(action.data),
-               }}, 
-               jsonOption:{
-                ...state.jsonOption,
-                equipment:{
-                  ...state.jsonOption.equipment,
-                  innCustom: state.jsonOption.equipment.innCustom.filter(dataInnCustom => dataInnCustom.name != action.data.name)
+              case "DELETE_ACCESSORIES":{
+                return{
+                  ...state,
+                  currentSelection:{
+                    ...state.currentSelection,
+                    accessories:{
+                      ...state.currentSelection.accessories,
+                      [action.component]: state.currentSelection.accessories[action.component].filter(equipment => equipment.name != action.data.name),
+                    }}, 
+                    jsonOption:{
+                      ...state.jsonOption,
+                      accessories:{
+                        ...state.jsonOption.accessories,
+                        [action.component]: state.jsonOption.accessories[action.component].concat(action.data),
+                      }
+                    }
+                 }
                 }
-             
-            }}
-          return newState
-        }case "DELETE_EQUIPMENT_INT":{
-          let newState = {
-            ...state,
-            currentSelection:{
-              ...state.currentSelection,
-              equipment:{
-                ...state.currentSelection.equipment,
-                innCustom: state.currentSelection.equipment.innCustom.filter(dataInnCustom => dataInnCustom.name != action.data.name),
-              }}, 
-              jsonOption:{
-                ...state.jsonOption,
-                equipment:{
-                  ...state.jsonOption.equipment,
-                  innCustom: state.jsonOption.equipment.innCustom.concat(action.data),
-                }
-            }
-           }
-         return newState
-        }case "GET_LOGO":{
-          return{
-            ...state,
-            currentSelection:{
-              ...state.currentSelection,
-              equipment:{
-                ...state.currentSelection.equipment,
-                logo: action.data
-           
-          }}}
-        }case "DELETE_LOGO":{
-          return{
-            ...state,
-            currentSelection:{
-              ...state.currentSelection,
-              equipment:{
-                ...state.currentSelection.equipment,
-                logo: null
-          }}}
-        }case "GET_STIRRUPS":{
-          return{
-            ...state,
-            currentSelection:{
-              ...state.currentSelection,
-              equipment:{
-                ...state.currentSelection.equipment,
-                stirrups: action.data
-           
-          }}}
-        }case "DELETE_STIRRUPS":{
-          return{
-            ...state,
-            currentSelection:{
-              ...state.currentSelection,
-              equipment:{
-                ...state.currentSelection.equipment,
-                stirrups: null
-          }}}
-        }case "GET_TELEMETRICS":{
-          return{
-            ...state,
-            currentSelection:{
-              ...state.currentSelection,
-              equipment:{
-                ...state.currentSelection.equipment,
-                telemetrics: action.data
-           
-          }}}
-        }case "DELETE_TELEMETRICS":{
-          return{
-            ...state,
-            currentSelection:{
-              ...state.currentSelection,
-              equipment:{
-                ...state.currentSelection.equipment,
-                telemetrics: null
-          }}}
-        }case "GET_AUDIO":{
-          return{
-            ...state,
-            currentSelection:{
-              ...state.currentSelection,
-              equipment:{
-                ...state.currentSelection.equipment,
-                audioSystem: action.data
-           
-          }}}
-        }case "DELETE_AUDIO":{
-          return{
-            ...state,
-            currentSelection:{
-              ...state.currentSelection,
-              equipment:{
-                ...state.currentSelection.equipment,
-                audioSystem: null
-          }}}
-        }case "GET_BRAKE":{
-          return{
-            ...state,
-            currentSelection:{
-              ...state.currentSelection,
-              equipment:{
-                ...state.currentSelection.equipment,
-                brake: action.data
-           
-          }}}
-        }case "DELETE_BRAKE":{
-          return{
-            ...state,
-            currentSelection:{
-              ...state.currentSelection,
-              equipment:{
-                ...state.currentSelection.equipment,
-                brake: null
-          }}}
-        }
-        
+              
           default:
             return state
   }

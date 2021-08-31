@@ -9,7 +9,6 @@ import Menu from "./Menu";
 
 const Sealing = ({state, parseSealSelected, getMenu}) => {
 
-    console.log("state sealing : ", state);
     let mappedSeal = state.sealingJson
 
     const getSeal = (currentSelect) => {

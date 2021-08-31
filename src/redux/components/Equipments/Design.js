@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { deleteDesign, getDesign} from "../../actions";
+import { getEquipmentArray, deleteEquipmentArray} from "../../actions";
 import { Carousel, Row, Col, Icon, Button } from 'react-materialize'; 
 import Menu from "../Menu";
 
 
-const Design = ({state, getDesign, deleteDesign}) => { 
+const Design = ({state, getEquipmentArray, deleteEquipmentArray}) => { 
     const mapDesignJson = () =>
     state.jsonOption.equipment.design.map((design)=>{
         
@@ -14,7 +14,7 @@ const Design = ({state, getDesign, deleteDesign}) => {
              <img src={design.picture}></img>
                 <p className='equipmentName truncate'>{design.name}</p>
                 <p>{design.price} <i class='fas fa-comment-dollar'></i> 
-                    <Button onClick = {()=>getDesign(design)}
+                    <Button onClick = {()=>getEquipmentArray('design', design)}
                     className='right'
                     floating
                     icon={<Icon>add</Icon>}
@@ -35,7 +35,7 @@ const mapConfortSelected = () =>
                 <img  src={design.picture}></img>
                 <p className='equipmentName truncate'>{design.name}</p>
                 <p>{design.price} <i class='fas fa-comment-dollar'></i> </p>
-               <Button onClick = {()=>deleteDesign(design)}
+               <Button onClick = {()=>deleteEquipmentArray('design', design)}
                     className="red right deleteButton"
                     floating
                     icon={<Icon>delete_forever</Icon>}
@@ -113,8 +113,8 @@ const mapStateToProps = state =>{
 }
 const mapDispatchToProps = dispatch => {
     return{
-        getDesign : (data) => dispatch(getDesign(data)),
-        deleteDesign : (data) => dispatch(deleteDesign(data)),
+        getEquipmentArray : (component, data) =>dispatch(getEquipmentArray(component, data)),
+        deleteEquipmentArray : (component, data) =>dispatch(deleteEquipmentArray(component, data))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Design)

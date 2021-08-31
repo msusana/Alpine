@@ -1,29 +1,29 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Carousel, Row, Col, Button, Icon } from 'react-materialize'; 
-import { getLogo, getStirrups, deleteLogo, deleteStirrups} from "../../actions";
+import { getEquipment, deleteEquipment} from "../../actions";
 import Menu from "../Menu";
 
-const EquipmentExterieur = ({state, getLogo, getStirrups, deleteLogo, deleteStirrups}) => {
+const EquipmentExterieur = ({state, getEquipment, deleteEquipment}) => {
 console.log(state)
 const onExtCustom = (data, selection) => {
     if(selection === 'logo'){
         if(state.currentSelection.equipment.logo === null){
-            getLogo(data)
+            getEquipment('logo',data)
             
         }else{
-            deleteLogo(data)
+            deleteEquipment('logo',data)
         }
     }
     if(selection !== 'logo'){
 
         if(state.currentSelection.equipment.stirrups === null){
-            getStirrups(data)
+            getEquipment('stirrups',data)
         }else if(state.currentSelection.equipment.stirrups !== null){
             if(state.currentSelection.equipment.stirrups.name === data.name){
-            deleteStirrups(data)
+            deleteEquipment('stirrups',data)
             }else{
-                getStirrups(data)
+                getEquipment('stirrups',data)
             }
         }
     }
@@ -168,10 +168,8 @@ const mapStateToProps = state =>{
 }
 const mapDispatchToProps = dispatch => {
     return{
-        getLogo: (data) => dispatch(getLogo(data)),
-        getStirrups: (data) => dispatch(getStirrups(data)),
-        deleteLogo: (data) => dispatch(deleteLogo(data)),
-        deleteStirrups: (data) => dispatch(deleteStirrups(data)),
+        getEquipment : (component, data) =>dispatch(getEquipment(component, data)),
+        deleteEquipment : (component, data) =>dispatch(deleteEquipment(component, data))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(EquipmentExterieur)

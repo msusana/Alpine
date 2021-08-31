@@ -22,33 +22,48 @@ export const getDataJson = (version, option) => {
     
 }
 
-export const getExhaust = (data) => {
+export const getEquipment = (component, data) =>{
     return{
-       type : 'GET_EXHAUST',
-       data
+        type : 'GET_EQUIPMENT',
+        component : component,
+        data: data
     }
-    
 }
-export const deleteExhaust = () => {
+export const deleteEquipment = (component, data) =>{
     return{
-       type : 'DELETE_EXHAUST',
+        type : 'DELETE_EQUIPMENT',
+        component : component,
+        data:data 
     }
-    
 }
-export const getParkAssist = (data) => {
+export const getEquipmentArray = (component, data) =>{
     return{
-       type : 'GET_PARKASSIST',
-       data
+        type : 'GET_EQUIPMENT_ARRAY',
+        component : component,
+        data: data
     }
-    
 }
-export const deleteParkAssist = () => {
+export const deleteEquipmentArray = (component, data) =>{
     return{
-       type : 'DELETE_PARKASSIST',
+        type : 'DELETE_EQUIPMENT_ARRAY',
+        component : component,
+        data:data 
     }
-    
 }
-
+export const getAccessories = (component, data) =>{
+    return{
+        type : 'GET_ACCESSORIES',
+        component : component,
+        data: data
+    }
+}
+export const deleteAccessories = (component, data) =>{
+    return{
+        type : 'DELETE_ACCESSORIES',
+        component : component,
+        data:data 
+    }
+}
 
 export const getVersion = (data) => {
     return (dispatch) => {
@@ -80,118 +95,8 @@ export const parseSealSelected = (data) => {
         data
     }
 }
-export const getConfort = (data) => {
-    return{
-       type : 'GET_CONFORT',
-       data
-    }
-    
-}
-export const deleteConfort  = () => {
-    return{
-       type : 'DELETE_CONFORT',
-    }
-    
-}
-export const getDesign = (data) => {
-    console.log(data)
-    return{
-       type : 'GET_DESIGN',
-       data
-    }
-    
-}
-export const deleteDesign  = (data) => {
-    console.log(data)
-    return{
-       type : 'DELETE_DESIGN',
-       data
-    }
-    
-}
-export const getEquipmentInterieur = (data) => {
-    return{
-       type : 'GET_EQUIPMENT_INT',
-       data
-    }
-    
-}
-export const deleteEquipmentInterieur  = (data) => {
-    return{
-       type : 'DELETE_EQUIPMENT_INT',
-       data
-    }
-    
-}
-
-export const getStirrups = (data) => {
-    return{
-       type : 'GET_STIRRUPS',
-       data
-    }
-    
-}
-export const deleteStirrups  = () => {
-    return{
-       type : 'DELETE_STIRRUPS',
-    }
-    
-}
-export const getLogo = (data) => {
-    return{
-       type : 'GET_LOGO',
-       data
-    }
-    
-}
-export const deleteLogo  = () => {
-    return{
-       type : 'DELETE_LOGO',
-    }
-    
-}
 
 
-export const getTelemetrics = (data) => {
-    return{
-       type : 'GET_TELEMETRICS',
-       data
-    }
-    
-}
-export const deleteTelemetrics = () => {
-    return{
-       type : 'DELETE_TELEMETRICS',
-    }
-    
-}
-export const getAudioSystem = (data) => {
-    return{
-       type : 'GET_AUDIO',
-       data
-    }
-    
-}
-export const deleteAudioSystem  = () => {
-    return{
-       type : 'DELETE_AUDIO',
-    }
-    
-}
-
-export const getBrake = (data) => {
-    return{
-       type : 'GET_BRAKE',
-       data
-    }
-    
-}
-export const deleteBrake  = () => {
-    return{
-       type : 'DELETE_BRAKE',
-    }
-    
-}
 export const getMenu = (data) => {
     return{
        type : 'GET_MENU',

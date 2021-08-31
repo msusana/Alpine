@@ -372,8 +372,7 @@
                    "picture":"/AlpineCars_app-images/configurateur/accessoires/transport et protection/fixation-extincteur.jpg"
                 }
                ],
-             "multimedia":{
-                "support":[{
+             "multimedia":[{
                       "name":"Support caméra sport",
                       "price":89,
                       "picture":"/AlpineCars_app-images/configurateur/accessoires/multimedia/support-camera.jpg"
@@ -383,8 +382,7 @@
                       "price":21,
                       "picture":"/AlpineCars_app-images/configurateur/accessoires/multimedia/support-smartphone.jpg"
                    }
-                  ]
-             },
+                  ],
              "interior":[{
                    "name":"Tapis de coffre",
                    "price":83,
@@ -411,7 +409,18 @@
                    "price":51,
                    "picture":"/AlpineCars_app-images/configurateur/accessoires/exterieur/antivol-jantes.jpg"
                 }
-               ]
+               ],
+               "garage":[{
+                  "name":"Chargeur batterie",
+                  "price":240,
+                  "picture":"/AlpineCars_app-images/configurateur/accessoires/garage/chargeur-batterie.jpg"
+               },
+               {
+                  "name":"Kit Outils Alpine",
+                  "price":398,
+                  "picture":"/AlpineCars_app-images/configurateur/accessoires/garage/kit-outils.jpg"
+               }
+              ]
              }
           }
        }
