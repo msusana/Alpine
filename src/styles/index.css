@@ -344,3 +344,8 @@ nav ul li a{
         color:white;
         
     }
+
+    .modalTest{
+        min-height: 85%;
+        width: 80%;
+    }
