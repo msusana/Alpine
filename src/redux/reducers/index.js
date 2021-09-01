@@ -13,7 +13,7 @@ export const initialState = {
     price : null,
     mainPic : null,
     view : [],
-    rims : {},
+    rims : null,
     sealing : null,
     equipment:{
       innCustom : [],

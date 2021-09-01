@@ -53,7 +53,6 @@ return(
             ]}
             bottomSheet={false}
             fixedFooter={false}
-            header="Récapitulatif"
             id="Modal-10"
             open={false}
             className="modalTest"

@@ -1,51 +1,452 @@
 import React from "react";
 import { connect } from "react-redux";
- 
+import { Carousel, Row, Col, Button } from 'react-materialize';  
+import { getMenu, getEquipementPannel } from "../actions";
+import { Link } from 'react-router-dom';
 
-const Summary = ({}) => {
+const Summary = ({state, getMenu}) => {
+
+    let prixTotal = state.accessoriesPrice + state.globalPrice + state.equipementsPrice;
+
+    const mappedPics = () => state.currentSelection.view.map((pictures) => {
+        return (
+            `${pictures}`
+        )
+    })
+
+    const getMenuAndPannel = (menu, pannel) => {
+
+        getMenu(menu);
+        getEquipementPannel(pannel);
+    }
+    const mapDesign = () =>
+    state.currentSelection.equipment.design.map((design)=>{
+       return(
+        <Row className='descriptifItem'>
+            <Col s={4} className='imgCategories'>
+            <img src={design.picture} ></img>
+            </Col>
+            <Col s={5} className='left-align'>
+                {design.name}
+            </Col>
+            <Col s={3} className='right-align'>
+                {design.price} <i class='fas fa-comment-dollar'></i>
+            </Col>
+        </Row>
+           
+       )
+    })
+
+    const mapInnCustom = () =>
+    state.currentSelection.equipment.innCustom.map((innCustom)=>{
+       return(
+        <Row className='descriptifItem'>
+            <Col s={4} className='imgCategories'>
+            <img src={innCustom.picture} ></img>
+            </Col>
+            <Col s={5} className='left-align'>
+                {innCustom.name}
+            </Col>
+            <Col s={3} className='right-align'>
+                {innCustom.price} <i class='fas fa-comment-dollar'></i>
+            </Col>
+        </Row>
+       )
+    })
+    const mapAccessoriesItem = (key) =>
+    state.currentSelection.accessories[key].map((accessories)=>{
+       return(
+        <Row className='descriptifItem'>
+            <Col s={4} className='imgCategories'>
+            <img src={accessories.picture} ></img>
+            </Col>
+            <Col s={5} className='left-align'>
+                {accessories.name}
+            </Col>
+            <Col s={3} className='right-align'>
+                {accessories.price} <i class='fas fa-comment-dollar'></i>
+            </Col>
+        </Row>
+       )
+    })
+  
+    const mapAccessories = (key) => {
+    let categorie = ''
+        switch (key) {
+            case "interior":
+                categorie = 'Interieur'
+                break;
+            case "multimedia":
+                categorie = 'Multimedia'
+                break;
+            case "transportAndProtection":
+                categorie = 'Transport'
+                break;
+            case "exterior":
+                categorie = 'Exterieur'
+                break;
+            case "garage":
+                categorie = 'Garage'
+                break;
+                        
+            default:
+                break;
+        }
+        return ( 
+            <div className='container'>
+            <p className='categorie'>{categorie}</p>
+
+            {state.currentSelection.accessories[key].length !== 0 &&
+                mapAccessoriesItem(key)
+            }
+                    <Link to={"/" + categorie} onClick={()=>getMenuAndPannel("accessories", key)}>
+                            {state.currentSelection.accessories[key].length !== 0 ? "CHANGER" : "CHOISIR" }
+                    </Link>
+        </div>
+        
+    )}
+  
 
 return(
+
     <div >
-    <a href='/'>recommencer</a>
-    <p>Las variables, campos o expresiones de tipo objeto pueden contener datos de diversos tipos. La estructura de los objetos "nativos" 4D se basa en el principio clásico de los pares "propiedad/valor". La sintaxis de estos objetos se basa en la notación JSON:
+    <Row>
+        <Col  m={7} s={12}>
+            {state.currentSelection.color &&
+         <Row>
+             <Col s={12} className='viewModal'>
+                <img src={state.currentSelection.view[0]}></img>
+             </Col>
+             <Col s={12} className='viewModal'>
+             <img src={state.currentSelection.view[1]}></img>
+             </Col>
+             <Col s={12} className='viewModal'>
+             <img src={state.currentSelection.view[2]}></img>
+             </Col>
+         </Row>
+            }
+        </Col>
+        <Col  m={5} s={12}>
+            <div className='prixSummary'>
+                <p> Prix du modèle configurè </p>
+                <p>{prixTotal}<i class='fas fa-comment-dollar'></i></p>   
+            </div>
+            <div className='resetSummary'>
+                <Button className='light-blue darken-4 white-text'
+                    node="a"
+                    waves="light">
+                    Recommencer
+                </Button>
+                <p>Votre Configuration</p>
+            </div>
 
-El nombre de una propiedad es siempre un texto, por ejemplo "Name". Debe seguir reglas específicas.
+            <p className='categorie'>Version</p>
+            <div className='descriptifSummary'>
+                <div>
+                    {state.version}
+                </div>
+                <div>
+                    {state.jsonVersion.price} <i class='fas fa-comment-dollar'></i>
+                </div>
+            </div>
+            <Link to="/" onClick={()=>getMenu(null)}>
+                     CHANGER 
+            </Link>
 
-Un valor de propiedad puede ser del tipo siguiente:
+            <p className='categorie'>Couleur</p>
+                {state.currentSelection.color !== null &&
+                <>
+                    <Row className='descriptifItem'>
+                        <Col s={4} className='imgCategories'>
+                        <img src={state.currentSelection.view[0]} ></img>
+                        </Col>
+                        <Col s={5} className='left-align'>
+                            {state.currentSelection.color}
+                        </Col>
+                        <Col s={3} className='right-align'>
+                            {state.jsonVersion.price} <i class='fas fa-comment-dollar'></i>
+                        </Col>
+                    </Row>
+                    
+                    </>
+                }
+                    <Link to="/Couleur" onClick={()=>getMenu('color')}>
+                    {state.currentSelection.color ? "CHANGER" : "CHOISIR" }
+                    </Link>
 
-número (Real, Entero, etc.)
-texto
-null
-booleano
-puntero (almacenado como tal, evaluado con el comando JSON Stringify o al copiar),
-fecha (tipo fecha o cadena en formato fecha ISO)
-objeto(1) (los objetos pueden ser anidados en varios niveles)
-imagen(2)
-colección
-(1)Los objetos ORDA como entidades o las selecciones de entidades no pueden almacenarse en campos objeto; sin embargo, se soportan completamente en las variables objeto en memoria.
+            <p className='categorie'>Jantes</p>
+            {state.currentSelection.rims !== null &&
+                <>
+                    <Row className='descriptifItem'>
+                        <Col s={4} className='imgCategories'>
+                        <img src={state.currentSelection.rims.pictures[4]} ></img>
+                        </Col>
+                        <Col s={5} className='left-align'>
+                            {state.currentSelection.rims.model}
+                        </Col>
+                        <Col s={3} className='right-align'>
+                            {state.currentSelection.rims.price} <i class='fas fa-comment-dollar'></i>
+                        </Col>
+                    </Row>
+                    
+                    </>
+                }
+                    <Link to="/Jantes" onClick={()=>getMenu('rims')}>
+                            {state.currentSelection.rims ? "CHANGER" : "CHOISIR" }
+                    </Link>
 
-(2)Cuando se expone como texto en el depurador o se exporta a JSON, las propiedades de los objetos de tipo imagen indican "[objeto Imagen]".
 
-Atención: recuerde que los nombres de atributos diferencian entre mayúsculas y minúsculas.
+            <p className='categorie'>Sellerie</p>
+            {state.currentSelection.sealing !== null &&
+                <>
+                    <Row className='descriptifItem'>
+                        <Col s={4} className='imgCategories'>
+                        <img src={state.currentSelection.sealing.picture} ></img>
+                        </Col>
+                        <Col s={5} className='left-align'>
+                            {state.currentSelection.sealing.name}
+                        </Col>
+                        <Col s={3} className='right-align'>
+                            {state.currentSelection.sealing.price} <i class='fas fa-comment-dollar'></i>
+                        </Col>
+                    </Row>
+                    
+                    </>
+                }
+                    <Link to="/Sellerie" onClick={()=>getMenu('sealing')}>
+                            {state.currentSelection.sealing ? "CHANGER" : "CHOISIR" }
+                    </Link>
+            
+           
+        </Col>
+    </Row> 
+    <p className='categorie center-align'>Équipements</p>
+        <div className='container'>
+            <p className='categorie'>Multimedia</p>
+            {state.currentSelection.equipment.audioSystem !== null &&
+                <>
+                    <Row className='descriptifItem'>
+                        <Col s={4} className='imgCategories'>
+                        <img src={state.currentSelection.equipment.audioSystem.picture} ></img>
+                        </Col>
+                        <Col s={5} className='left-align'>
+                            {state.currentSelection.equipment.audioSystem.name}
+                        </Col>
+                        <Col s={3} className='right-align'>
+                            {state.currentSelection.equipment.audioSystem.price} <i class='fas fa-comment-dollar'></i>
+                        </Col>
+                    </Row>
+                    
+                    </>
+                }
+                    <Link to="/Media" onClick={()=>getMenuAndPannel("equipments", "media")}>
+                            {state.currentSelection.equipment.audioSystem ? "CHANGER" : "CHOISIR" }
+                    </Link>
+        </div>
+        <div className='container'>
+            <p className='categorie'>Télémétrics</p>
+            {state.currentSelection.equipment.telemetrics !== null &&
+                <>
+                    <Row className='descriptifItem'>
+                        <Col s={4} className='imgCategories'>
+                        <img src={state.currentSelection.equipment.telemetrics.picture} ></img>
+                        </Col>
+                        <Col s={5} className='left-align'>
+                            {state.currentSelection.equipment.telemetrics.name}
+                        </Col>
+                        <Col s={3} className='right-align'>
+                            {state.currentSelection.equipment.telemetrics.price} <i class='fas fa-comment-dollar'></i>
+                        </Col>
+                    </Row>
+                    
+                    </>
+                }
+                    <Link to="/Media" onClick={()=>getMenuAndPannel("equipments", "media")}>
+                            {state.currentSelection.equipment.telemetrics ? "CHANGER" : "CHOISIR" }
+                    </Link>
+        </div>
+        <div className='container'>
+            <p className='categorie'>Confort</p>
+            {state.currentSelection.equipment.confort !== null &&
+                <>
+                    <Row className='descriptifItem'>
+                        <Col s={4} className='imgCategories'>
+                        <img src={state.currentSelection.equipment.confort.picture} ></img>
+                        </Col>
+                        <Col s={5} className='left-align'>
+                            {state.currentSelection.equipment.confort.name}
+                        </Col>
+                        <Col s={3} className='right-align'>
+                            {state.currentSelection.equipment.confort.price} <i class='fas fa-comment-dollar'></i>
+                        </Col>
+                    </Row>
+                    
+                    </>
+                }
+                    <Link to="/Confort" onClick={()=>getMenuAndPannel("equipments", "confort")}>
+                            {state.currentSelection.equipment.confort ? "CHANGER" : "CHOISIR" }
+                    </Link>
+        </div>
+        <div className='container'>
+            <p className='categorie'>Design</p>
+            {state.currentSelection.equipment.design.length !== 0 &&
 
-Las variables, campos o expresiones de tipo Objeto se gestionan utilizando la notación objeto o los comandos clásicos disponibles en el tema Objetos (Lenguaje). Tenga en cuenta que se pueden utilizar comandos específicos del tema Búsquedas, como QUERY BY ATTRIBUTE, QUERY SELECTION BY ATTRIBUTE, o ORDER BY ATTRIBUTE para llevar a cabo el procesamiento de los campos objetos.
+                   mapDesign()
+                    
+                }
+                    <Link to="/Design" onClick={()=>getMenuAndPannel("equipments", "design")}>
+                            {state.currentSelection.equipment.design.length !== 0 ? "CHANGER" : "CHOISIR" }
+                    </Link>
+        </div>
+        <div className='container'>
+            <p className='categorie'>Intérieur</p>
+            {state.currentSelection.equipment.innCustom.length !== 0 &&
 
-Cada valor de propiedad al que se accede a través de la notación de objeto se considera una expresión. Puede utilizar estos valores siempre que se esperen expresiones 4D:
+                   mapInnCustom()
+                    
+                }
+                    <Link to="/EquipmentInterieur" onClick={()=>getMenuAndPannel("equipments", "equipementInterieur")}>
+                            {state.currentSelection.equipment.innCustom.length !== 0 ? "CHANGER" : "CHOISIR" }
+                    </Link>
+        </div>
+        
+        <div className='container'>
+            <p className='categorie'>Conduite</p>
+            {state.currentSelection.equipment.parkAssist !== null &&
+                <>
+                    <Row className='descriptifItem'>
+                        <Col s={4} className='imgCategories'>
+                        <img src={state.currentSelection.equipment.parkAssist.picture} ></img>
+                        </Col>
+                        <Col s={5} className='left-align'>
+                            {state.currentSelection.equipment.parkAssist.name}
+                        </Col>
+                        <Col s={3} className='right-align'>
+                            {state.currentSelection.equipment.parkAssist.price} <i class='fas fa-comment-dollar'></i>
+                        </Col>
+                    </Row>
+                    
+                    </>
+                }
+            {state.currentSelection.equipment.exhaust !== null &&
+                <>
+                    <Row className='descriptifItem'>
+                        <Col s={4} className='imgCategories'>
+                        <img src={state.currentSelection.equipment.exhaust.picture} ></img>
+                        </Col>
+                        <Col s={5} className='left-align'>
+                            {state.currentSelection.equipment.exhaust.name}
+                        </Col>
+                        <Col s={3} className='right-align'>
+                            {state.currentSelection.equipment.exhaust.price} <i class='fas fa-comment-dollar'></i>
+                        </Col>
+                    </Row>
+                    
+                    </>
+                }
+                {(state.currentSelection.equipment.exhaust) || (state.currentSelection.equipment.parkAssist) &&
+                    <Link to="/Conduite" onClick={()=>getMenuAndPannel("equipments", "conduite")}>
+                           CHANGER
+                    </Link>
+                    }
+                {(state.currentSelection.equipment.exhaust === null ) && (state.currentSelection.equipment.parkAssist === null) &&
+                    <Link to="/Conduite" onClick={()=>getMenuAndPannel("equipments", "conduite")}>
+                           CHOISIR
+                    </Link>
+                    }    
+        </div>
 
-en código 4D, ya sea escrito en los métodos (editor de métodos) o externalizado (fórmulas, archivos de etiquetas procesados por PROCESS 4D TAGS o el servidor web, archivos de exportación, documentos 4D Write Pro...),
-en las áreas de expresiones del depurador y del explorador de ejecución,
-en la lista de propiedades del editor de formularios para los objetos formulario: campo Variable o Expresión, así como diversas expresiones de list box y columnas (fuente de datos, color de fondo, estilo oLas variables, campos o expresiones de tipo objeto pueden contener datos de diversos tipos. La estructura de los objetos "nativos" 4D se basa en el principio clásico de los pares "propiedad/valor". La sintaxis de estos objetos se basa en la notación JSON: El nombre de una propiedad es siempre un texto, por ejemplo "Name". Debe seguir reglas específicas. Un valor de propiedad puede ser del tipo siguiente: número (Real, Entero, etc.) texto null booleano puntero (almacenado como tal, evaluado con el comando JSON Stringify o al copiar), fecha (tipo fecha o cadena en formato fecha ISO) objeto(1) (los objetos pueden ser anidados en varios niveles) imagen(2) colección (1)Los objetos ORDA como entidades o las selecciones de entidades no pueden almacenarse en campos objeto; sin embargo, se soportan completamente en las variables objeto en memoria. (2)Cuando se expone como texto en el depurador o se exporta a JSON, las propiedades de los objetos de tipo imagen indican "[objeto Imagen]". Atención: recuerde que los nombres de atributos diferencian entre mayúsculas y minúsculas. Las variables, campos o expresiones de tipo Objeto se gestionan utilizando la notación objeto o los comandos clásicos disponibles en el tema Objetos (Lenguaje). Tenga en cuenta que se pueden utilizar comandos específicos del tema Búsquedas, como QUERY BY ATTRIBUTE, QUERY SELECTION BY ATTRIBUTE, o ORDER BY ATTRIBUTE para llevar a cabo el procesamiento de los campos objetos. Cada valor de propiedad al que se accede a través de la notación de objeto se considera una expresión. Puede utilizar estos valores siempre que se esperen expresiones 4D: en código 4D, ya sea escrito en los métodos (editor de métodos) o externalizado (fórmulas, archivos de etiquetas procesados por PROCESS 4D TAGS o el servidor web, archivos de exportación, documentos 4D Write Pro...), en las áreas de expresiones del depurador y del explorador de ejecución, en la lista de propiedades del editor de formularios para los objetos formulario: campo Variable o Expresión, así como diversas expresiones de list box y columnas (fuente de datos, color de fondo, estilo o color de fuente). color de fuente).
-    </p>
+        <div className='container'>
+            <p className='categorie'>Exterieur</p>
+            {state.currentSelection.equipment.logo !== null &&
+                <>
+                    <Row className='descriptifItem'>
+                        <Col s={4} className='imgCategories'>
+                        <img src={state.currentSelection.equipment.logo.picture} ></img>
+                        </Col>
+                        <Col s={5} className='left-align'>
+                            {state.currentSelection.equipment.logo.name}
+                        </Col>
+                        <Col s={3} className='right-align'>
+                            {state.currentSelection.equipment.logo.price} <i class='fas fa-comment-dollar'></i>
+                        </Col>
+                    </Row>
+                    
+                    </>
+                }
+            {state.currentSelection.equipment.stirrups !== null &&
+                <>
+                    <Row className='descriptifItem'>
+                        <Col s={4} className='imgCategories'>
+                        <img src={state.currentSelection.equipment.stirrups.picture} ></img>
+                        </Col>
+                        <Col s={5} className='left-align'>
+                            {state.currentSelection.equipment.stirrups.name}
+                        </Col>
+                        <Col s={3} className='right-align'>
+                            {state.currentSelection.equipment.stirrups.price} <i class='fas fa-comment-dollar'></i>
+                        </Col>
+                    </Row>
+                    
+                    </>
+                }
+                {(state.currentSelection.equipment.stirrups) || (state.currentSelection.equipment.logo) &&
+                    <Link to="/EquipmentExterieur" onClick={()=>getMenuAndPannel("equipments", "equipementExterieur")}>
+                           CHANGER
+                    </Link>
+                    }
+                {(state.currentSelection.equipment.stirrups === null ) && (state.currentSelection.equipment.logo === null) &&
+                    <Link to="/EquipmentExterieur" onClick={()=>getMenuAndPannel("equipments", "equipementExterieur")}>
+                           CHOISIR
+                    </Link>
+                    }    
+        </div>
+        <div className='container'>
+            <p className='categorie'>Securite</p>
+            {state.currentSelection.equipment.brake !== null &&
+                <>
+                    <Row className='descriptifItem'>
+                        <Col s={4} className='imgCategories'>
+                        <img src={state.currentSelection.equipment.brake.picture} ></img>
+                        </Col>
+                        <Col s={5} className='left-align'>
+                            {state.currentSelection.equipment.brake.name}
+                        </Col>
+                        <Col s={3} className='right-align'>
+                            {state.currentSelection.equipment.brake.price} <i class='fas fa-comment-dollar'></i>
+                        </Col>
+                    </Row>
+                    
+                    </>
+                }
+                    <Link to="/Security" onClick={()=>getMenuAndPannel("equipments", "security")}>
+                            {state.currentSelection.equipment.brake ? "CHANGER" : "CHOISIR" }
+                    </Link>
+        </div>
+
+        <p className='categorie center-align'>Accessoires</p>
+        {
+         Object.keys(state.currentSelection.accessories).map((key)=>{
+
+            return  mapAccessories(key)
+        })
+       }
+
+        
+
+
+      
     </div>
 )}
 const mapStateToProps = state =>{
     return{
-        
+        state: state
     }
 }
 const mapDispatchToProps = dispatch => {
     return{
-        
+        getMenu: (data)=> dispatch(getMenu(data)),
+        getEquipementPannel : (data)=>dispatch(getEquipementPannel(data))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Summary)

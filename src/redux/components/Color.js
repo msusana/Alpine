@@ -10,7 +10,6 @@ const Color = ({state, parseColorSelected, getMenu}) => {
     let mappedColor = state.jsonVersion.characteristic
 
     const getColor = (currentSelect) => {
-console.log(state)
             parseColorSelected(currentSelect)
     }
 

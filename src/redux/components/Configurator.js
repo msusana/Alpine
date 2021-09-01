@@ -6,7 +6,7 @@ import Menu from "./Menu";
 import { getMenu } from "../actions";
 
 const Configurator = ({state, getMenu}) => {
- 
+ console.log(state)
 return(
     <div>
         <div className='configurator'>

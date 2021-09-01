@@ -23,7 +23,7 @@ console.log(state)
                 <div className="container">
                     <Col className="custom-color-select" s={6} m={6} >
                        <div className={state.currentSelection.rims ? rims.model === state.currentSelection.rims.model ? 'selected' : '' : ""} >
-                       <img src={rims.pictures[0]} onClick={() => (getRims(rims))}/>
+                       <img src={rims.pictures[4]} onClick={() => (getRims(rims))}/>
                        {rims.model}
                        <br/>
                        <i class="material-icons">attach_money</i>{rims.price}
