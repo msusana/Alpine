@@ -6,12 +6,20 @@ export const getDataVersion = (data) => {
         
     }
 
-    export const getData = () => {
+export const getData = () => {
         return {
             type : 'FETCHING_DATA'
         }
     }
  
+export const getStateFromLocalStorage = (data) => {
+
+        return {
+            type : 'GET_STATE_FROM_STORAGE',
+            data
+        }
+    
+    }
 
 export const getDataJson = (version, option) => {
     return{

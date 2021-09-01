@@ -1,13 +1,19 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
-import { getMenu, getEquipementPannel } from "../actions";
+import { getMenu, getEquipementPannel, getStateFromLocalStorage } from "../actions";
 import { Button, Modal } from 'react-materialize'; 
 import Summary from "./Summary";
 
 
-const Menu = ({state, getMenu, getEquipementPannel}) => {
+const Menu = ({state, getMenu, getEquipementPannel, getStateFromLocalStorage}) => {
+
+    useEffect(async() => {
+        await checkState();
+      });
+
     let prixTotal = state.accessoriesPrice + state.globalPrice + state.equipementsPrice;
+
     function selectColor(){
 
         return( alert("Selectionné une couleur en premier"))
@@ -19,8 +25,30 @@ const Menu = ({state, getMenu, getEquipementPannel}) => {
         getEquipementPannel(pannel);
     }
 
+    const checkState = async() => {
+        let test = {};
+        test = sessionStorage.getItem("currentConfiguration");
+ 
+         if(Object.keys(state.jsonVersion).length < 1 || state === null ){
+                 
+             await getStateFromLocalStorage(JSON.parse(test))
+         }
+ 
+     }
+     const menuClick = () => {
+        var x = document.getElementById("menu");
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
+        }
+      }
+
 return(
     <div>
+        <button className="menu-button" onClick={ () => menuClick()}>Menu</button>
+
+        <div id="menu">
             <div className='linkMenu' id={state.menu === "color" ? "menuSelected" : ""}><Link onClick={()=> getMenu("color")} to= "/Couleur"> Couleur <i class="fas fa-palette"></i></Link></div>
             
             {(state.currentSelection.color !== null) && (state.version === "Pure") &&
@@ -84,6 +112,7 @@ return(
                 <div className='linkMenu globalPrice'> Prix globale : {prixTotal} <i className='fas fa-comment-dollar'></i></div>
             }
     </div>
+</div>
 )}
 const mapStateToProps = state =>{
     return{
@@ -93,7 +122,8 @@ const mapStateToProps = state =>{
 const mapDispatchToProps = dispatch => {
     return{
         getMenu: (data)=> dispatch(getMenu(data)),
-        getEquipementPannel : (data)=>dispatch(getEquipementPannel(data))
+        getEquipementPannel : (data)=>dispatch(getEquipementPannel(data)),
+        getStateFromLocalStorage : (data)=>dispatch(getStateFromLocalStorage(data))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Menu)
