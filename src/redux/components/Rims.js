@@ -8,7 +8,7 @@ import Menu from "./Menu";
 
 
 const Rims = ({state, parseRimsSelected, getMenu}) => {
-console.log(state)
+
 
     let mappedRims = state.rimsJson
 
@@ -43,9 +43,7 @@ console.log(state)
     return(
 
        <div className='rims'>
-            <div className='menu'>
-        <Menu />
-        </div> 
+           
            <h3 className="car-name">{state.currentSelection.name}</h3>     
                 <Row>
                     {displayRims()}

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Row, Col, Carousel, Button, Icon } from 'react-materialize';
 import { Link } from 'react-router-dom';
 import { parseColorSelected, getMenu } from "../actions";
-import Menu from "./Menu";
+
 
 const Color = ({state, parseColorSelected, getMenu}) => {
 
@@ -43,9 +43,6 @@ const Color = ({state, parseColorSelected, getMenu}) => {
 
     return(
        <div className='color'>
-        <div className='menu'>
-        <Menu />
-        </div> 
         <h3 className="car-name">{state.currentSelection.name}</h3>
             {state.currentSelection.color === null &&
                 <div className="container">

@@ -45,7 +45,7 @@ return(
             {state.currentSelection.color === null &&
                 <div onClick={() => selectColor()} className='linkMenu-disable'><Link disabled to= "/Exterieur"> Accessories <i className='fas fa-box-open'></i></Link></div>
             }
-            {/* <div className='linkMenu' id={state.menu === "summary" ? "menuSelected" : ""}><Link onClick={()=> getMenu("summary")} to= "/Récapitulatif"> Récapitulatif <i className='fas fa-clipboard-list'></i></Link></div> */}
+           
             
             <Modal
             actions={[
@@ -70,7 +70,7 @@ return(
                 startingTop: '4%'
             }}
             
-            trigger={<Button node="button">Récapitulatif <i className='fas fa-clipboard-list'></i></Button>}
+            trigger={<Button className='blue-grey darken-4 btn-large'  node="button">Récapitulatif <i className='fas fa-clipboard-list'></i></Button>}
             >
             <Summary />
             </Modal>

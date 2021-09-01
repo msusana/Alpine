@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Row, Col, Carousel, Button, Icon } from 'react-materialize';
 import { Link } from 'react-router-dom';
 import { parseSealSelected, getMenu, getEquipementPannel } from "../actions";
-import Menu from "./Menu";
 
 
 
@@ -46,9 +45,7 @@ const Sealing = ({state, parseSealSelected, getMenu, getEquipementPannel}) => {
     return(
 
        <div className='sealing'>
-            <div className='menu'>
-        <Menu />
-        </div> 
+          
            <h3 className="car-name">{state.currentSelection.name}</h3>
            <Row>
                 {displaySeal()}

@@ -8,11 +8,6 @@ const Summary = ({state, getMenu}) => {
 
     let prixTotal = state.accessoriesPrice + state.globalPrice + state.equipementsPrice;
 
-    const mappedPics = () => state.currentSelection.view.map((pictures) => {
-        return (
-            `${pictures}`
-        )
-    })
 
     const getMenuAndPannel = (menu, pannel) => {
 
@@ -132,11 +127,13 @@ return(
                 <p>{prixTotal}<i class='fas fa-comment-dollar'></i></p>   
             </div>
             <div className='resetSummary'>
+                <a href='/#versions'>
                 <Button className='light-blue darken-4 white-text'
                     node="a"
                     waves="light">
                     Recommencer
                 </Button>
+                </a>
                 <p>Votre Configuration</p>
             </div>
 
